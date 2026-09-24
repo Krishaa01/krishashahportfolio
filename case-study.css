@@ -250,10 +250,6 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--on-surface-variant);
-}.cs-gallery-scroll .cs-gallery-item,
-.cs-gallery-scroll img {
-  flex: 0 0 100px;   /* ← change this number to resize */
-  aspect-ratio: 16/10;
 }
 
 .cs-media-placeholder .cs-ph-hint {
@@ -271,7 +267,9 @@
 
 .cs-gallery-scroll .cs-gallery-item,
 .cs-gallery-scroll img {
-  flex: 0 0 100px;
+  flex: 0 0 300px;
+  width: 300px;
+  min-width: 0;
   aspect-ratio: 16/10;
 }
 
@@ -420,7 +418,7 @@
 }
 
 .cs-character-card {
-  flex: 0 0 calc((100% - 4 * 4px) / 5);
+  flex: 0 0 calc((100% - 4 * 4px) / 8);
   aspect-ratio: 3/4;
   overflow: visible;
 
