@@ -211,21 +211,19 @@
         <section class="cs-section">
             <div class="cs-section-label">Meet the Cast</div>
             <h2 class="cs-section-title">Game Characters</h2>
-            <div class="cs-characters-panel">
-                <div class="cs-characters-grid">
-                    <div class="cs-character-card"><img src="shatter charact 1.png" alt="Shatter character 1"></div>
-                    <div class="cs-character-card"><img src="shatter charact 2.png" alt="Shatter character 2"></div>
-                    <div class="cs-character-card"><img src="shatter charact 3.png" alt="Shatter character 3"></div>
-                    <div class="cs-character-card"><img src="shatter charact 4.png" alt="Shatter character 4"></div>
-                    <div class="cs-character-card"><img src="shatter charact 5.png" alt="Shatter character 5"></div>
-                    <div class="cs-character-card"><img src="shatter charact 6.png" alt="Shatter character 6"></div>
-                    <div class="cs-character-card"><img src="shatter charact 7.png" alt="Shatter character 7"></div>
-                    <div class="cs-character-card"><img src="shatter charact 8.png" alt="Shatter character 8"></div>
-                    <div class="cs-character-card"><img src="shatter charact 9.png" alt="Shatter character 9"></div>
-                    <div class="cs-character-card"><img src="shatter charact 10.png" alt="Shatter character 10"></div>
-                    <div class="cs-character-card"><img src="shatter charact 11.png" alt="Shatter character 11"></div>
-                    <div class="cs-character-card"><img src="shatter charact 12.png" alt="Shatter character 12"></div>
-                </div>
+            <div class="cs-characters-track" id="charactersTrack">
+                <div class="cs-character-card"><img src="shatter charact 1.png" alt="Shatter character 1"></div>
+                <div class="cs-character-card"><img src="shatter charact 2.png" alt="Shatter character 2"></div>
+                <div class="cs-character-card"><img src="shatter charact 3.png" alt="Shatter character 3"></div>
+                <div class="cs-character-card"><img src="shatter charact 4.png" alt="Shatter character 4"></div>
+                <div class="cs-character-card"><img src="shatter charact 5.png" alt="Shatter character 5"></div>
+                <div class="cs-character-card"><img src="shatter charact 6.png" alt="Shatter character 6"></div>
+                <div class="cs-character-card"><img src="shatter charact 7.png" alt="Shatter character 7"></div>
+                <div class="cs-character-card"><img src="shatter charact 8.png" alt="Shatter character 8"></div>
+                <div class="cs-character-card"><img src="shatter charact 9.png" alt="Shatter character 9"></div>
+                <div class="cs-character-card"><img src="shatter charact 10.png" alt="Shatter character 10"></div>
+                <div class="cs-character-card"><img src="shatter charact 11.png" alt="Shatter character 11"></div>
+                <div class="cs-character-card"><img src="shatter charact 12.png" alt="Shatter character 12"></div>
             </div>
         </section>
 
@@ -272,6 +270,50 @@
                 }
             }, { passive: false });
         });
+
+        // Game Characters — horizontal scroll on hover + seamless infinite loop
+        (function () {
+            var track = document.getElementById('charactersTrack');
+            if (!track) return;
+
+            var originalCards = Array.prototype.slice.call(track.children);
+            var setCount = 3;
+            for (var s = 1; s < setCount; s++) {
+                originalCards.forEach(function (card) {
+                    track.appendChild(card.cloneNode(true));
+                });
+            }
+
+            function centerTrack() {
+                track.scrollLeft = track.scrollWidth / setCount;
+            }
+            requestAnimationFrame(centerTrack);
+            // images loading in can change scrollWidth after the first paint —
+            // re-center once more shortly after so it doesn't start off-center
+            setTimeout(centerTrack, 300);
+
+            function loopCheck() {
+                var setWidth = track.scrollWidth / setCount;
+                if (track.scrollLeft < setWidth * 0.5) {
+                    track.scrollLeft += setWidth;
+                } else if (track.scrollLeft > setWidth * 1.5) {
+                    track.scrollLeft -= setWidth;
+                }
+            }
+
+            var loopTimer = null;
+            track.addEventListener('scroll', function () {
+                if (loopTimer) clearTimeout(loopTimer);
+                loopTimer = setTimeout(loopCheck, 80);
+            }, { passive: true });
+
+            track.addEventListener('wheel', function (e) {
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                    e.preventDefault();
+                    track.scrollLeft += e.deltaY;
+                }
+            }, { passive: false });
+        })();
     </script>
 </body>
 

@@ -91,7 +91,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--outline);
+  color:  white;
   margin-bottom: 6px;
 }
 
@@ -101,12 +101,13 @@
   line-height: 1.3;
 }
 
-/* subtle theme-colored tints, one per stat */
-.cs-meta-c1 { background: #ff6ac3; }
-.cs-meta-c2 { background: #7ab2ff; }
-.cs-meta-c3 { background: #ff7d8f; }
-.cs-meta-c4 { background: #fff3e9; }
-.cs-meta-c5 { background: #ffd13a; }
+/* shades of yellow, gradient across the row — kept subtle (same hue family,
+   just lighter → deeper) so it reads as one cohesive bar, not a rainbow */
+.cs-meta-c1 { background: linear-gradient(135deg, #9ad3fb, #8aceff); }
+.cs-meta-c2 { background: linear-gradient(135deg, #8aceff, #65bfff); }
+.cs-meta-c3 { background: linear-gradient(135deg, #65bfff, #41abf6); }
+.cs-meta-c4 { background: linear-gradient(135deg, #41abf6, #2298eb); }
+.cs-meta-c5 { background: linear-gradient(135deg, #2298eb, #126eb0); }
 
 /* Duration is the standout stat — full color, bigger value */
 .cs-meta-featured {
@@ -131,7 +132,7 @@
 
 .cs-section-label {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--primary);
@@ -294,7 +295,7 @@
 }
 
 .cs-pipeline-step {
-  border-radius: 24px;
+  border-radius: 32px;
   padding: 32px 22px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -324,43 +325,29 @@
 .cs-pipeline-desc {
   font-size: 13px;
   line-height: 1.4;
+  color:white;
 }
 
+/* same yellow family as the meta bar, in a gradient, one shade per card */
 .cs-pipeline-step:nth-child(1) {
-  background: white;
-  border: 2px solid var(--pure-black);
+  background: linear-gradient(135deg, #abdcff, #8aceff);
 }
-.cs-pipeline-step:nth-child(1) .cs-pipeline-num { color: var(--secondary); }
-.cs-pipeline-step:nth-child(1) .cs-pipeline-title { color: var(--pure-black); }
-.cs-pipeline-step:nth-child(1) .cs-pipeline-desc { color: var(--outline); }
-
 .cs-pipeline-step:nth-child(2) {
-  background: #dce7ff;
+  background: linear-gradient(135deg,  #8aceff, #65bfff);
 }
-.cs-pipeline-step:nth-child(2) .cs-pipeline-num { color: var(--secondary); }
-.cs-pipeline-step:nth-child(2) .cs-pipeline-title { color: var(--pure-black); }
-.cs-pipeline-step:nth-child(2) .cs-pipeline-desc { color: #4a5568; }
-
 .cs-pipeline-step:nth-child(3) {
-  background: var(--zesty-orange);
+  background: linear-gradient(135deg,  #65bfff, #41abf6);
 }
-.cs-pipeline-step:nth-child(3) .cs-pipeline-num { color: white; }
-.cs-pipeline-step:nth-child(3) .cs-pipeline-title { color: white; }
-.cs-pipeline-step:nth-child(3) .cs-pipeline-desc { color: rgba(255,255,255,0.85); }
-
 .cs-pipeline-step:nth-child(4) {
-  background: var(--pure-black);
+  background: linear-gradient(135deg, #41abf6, #2298eb);
 }
-.cs-pipeline-step:nth-child(4) .cs-pipeline-num { color: var(--primary-container); }
-.cs-pipeline-step:nth-child(4) .cs-pipeline-title { color: white; }
-.cs-pipeline-step:nth-child(4) .cs-pipeline-desc { color: rgba(255,255,255,0.7); }
-
 .cs-pipeline-step:nth-child(5) {
-  background: #d7f5e3;
+  background: linear-gradient(135deg, #2298eb, #126eb0);
 }
-.cs-pipeline-step:nth-child(5) .cs-pipeline-num { color: var(--primary); }
-.cs-pipeline-step:nth-child(5) .cs-pipeline-title { color: var(--pure-black); }
-.cs-pipeline-step:nth-child(5) .cs-pipeline-desc { color: #3a5a46; }
+
+.cs-pipeline-step .cs-pipeline-num { color: #fdfcf9; }
+.cs-pipeline-step .cs-pipeline-title { color: var(--pure-black); }
+.cs-pipeline-step .cs-pipeline-desc { color: #ffffff; }
 
 /* Bullet groups (Finding the Core Idea / Building the System / Refining Through Play) */
 .cs-bullet-groups {
@@ -409,40 +396,48 @@
   background: var(--primary);
 }
 
-/* Characters gallery — all sitting together in one shared white panel */
-.cs-characters-panel {
-  border: 3px solid var(--pure-black);
-  border-radius: 16px;
-  background: white;
-  padding: 32px;
+/* Characters — horizontally scrollable strip, ~5 visible at a time, loops
+   seamlessly (see the loop/wheel-scroll script in shatter.html) */
+.cs-characters-track {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 6px 4px 16px;
+  scrollbar-width: none;
+  cursor: grab;
 }
 
-.cs-characters-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
+.cs-characters-track::-webkit-scrollbar {
+  height: 5px;
+}
+
+.cs-characters-track::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
 }
 
 .cs-character-card {
-  width: 130px;
+  flex: 0 0 calc((100% - 4 * 4px) / 5);
   aspect-ratio: 3/4;
-  overflow: hidden;
-  border-radius: 12px;
+  overflow: visible;
+
+  border: none;
+  border-radius: 0;
+
   transition: transform 0.2s ease;
 }
 
 .cs-character-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
   position: relative;
   z-index: 2;
 }
 
 .cs-character-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 /* Pull quote */
@@ -927,7 +922,7 @@
   .cs-two-col { grid-template-columns: 1fr; }
   .cs-pipeline { grid-template-columns: repeat(2, 1fr); }
   .cs-bullet-groups { grid-template-columns: 1fr; }
-  .cs-character-card { width: 100px; }
+  .cs-character-card { flex-basis: calc((100% - 2 * 18px) / 3); }
   .cs-gallery-scroll .cs-gallery-item, .cs-gallery-scroll img { flex-basis: 240px; }
   .cs-cta { padding: 32px; }
 }
