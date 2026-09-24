@@ -102,11 +102,11 @@
 }
 
 /* subtle theme-colored tints, one per stat */
-.cs-meta-c1 { background: #eaf6ef; }
-.cs-meta-c2 { background: #eaf1fb; }
-.cs-meta-c3 { background: #fdeef0; }
+.cs-meta-c1 { background: #ff6ac3; }
+.cs-meta-c2 { background: #7ab2ff; }
+.cs-meta-c3 { background: #ff7d8f; }
 .cs-meta-c4 { background: #fff3e9; }
-.cs-meta-c5 { background: #fdf8e8; }
+.cs-meta-c5 { background: #ffd13a; }
 
 /* Duration is the standout stat — full color, bigger value */
 .cs-meta-featured {
@@ -130,7 +130,7 @@
 }
 
 .cs-section-label {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
