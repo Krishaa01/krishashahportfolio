@@ -101,13 +101,22 @@
   line-height: 1.3;
 }
 
-/* shades of yellow, gradient across the row — kept subtle (same hue family,
-   just lighter → deeper) so it reads as one cohesive bar, not a rainbow */
-.cs-meta-c1 { background: linear-gradient(135deg, #9ad3fb, #8aceff); }
-.cs-meta-c2 { background: linear-gradient(135deg, #8aceff, #65bfff); }
-.cs-meta-c3 { background: linear-gradient(135deg, #65bfff, #41abf6); }
-.cs-meta-c4 { background: linear-gradient(135deg, #41abf6, #2298eb); }
-.cs-meta-c5 { background: linear-gradient(135deg, #2298eb, #126eb0); }
+/* requested navy blue, one uniform tone across the row */
+.cs-meta-c1,
+.cs-meta-c2,
+.cs-meta-c3,
+.cs-meta-c4,
+.cs-meta-c5 {
+  background: linear-gradient(135deg, #0a5a94, #004170);
+}
+
+.cs-meta-c1 .cs-meta-value,
+.cs-meta-c2 .cs-meta-value,
+.cs-meta-c3 .cs-meta-value,
+.cs-meta-c4 .cs-meta-value,
+.cs-meta-c5 .cs-meta-value {
+  color: white;
+}
 
 /* Duration is the standout stat — full color, bigger value */
 .cs-meta-featured {
@@ -241,6 +250,10 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--on-surface-variant);
+}.cs-gallery-scroll .cs-gallery-item,
+.cs-gallery-scroll img {
+  flex: 0 0 100px;   /* ← change this number to resize */
+  aspect-ratio: 16/10;
 }
 
 .cs-media-placeholder .cs-ph-hint {
@@ -251,17 +264,15 @@
 /* Screenshot gallery — horizontal scroll, no shadow */
 .cs-gallery-scroll {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   overflow-x: auto;
   padding-bottom: 12px;
-  scroll-snap-type: x proximity;
 }
 
 .cs-gallery-scroll .cs-gallery-item,
 .cs-gallery-scroll img {
-  flex: 0 0 320px;
+  flex: 0 0 100px;
   aspect-ratio: 16/10;
-  scroll-snap-align: start;
 }
 
 .cs-gallery-scroll img {
@@ -328,25 +339,17 @@
   color:white;
 }
 
-/* same yellow family as the meta bar, in a gradient, one shade per card */
-.cs-pipeline-step:nth-child(1) {
-  background: linear-gradient(135deg, #abdcff, #8aceff);
-}
-.cs-pipeline-step:nth-child(2) {
-  background: linear-gradient(135deg,  #8aceff, #65bfff);
-}
-.cs-pipeline-step:nth-child(3) {
-  background: linear-gradient(135deg,  #65bfff, #41abf6);
-}
-.cs-pipeline-step:nth-child(4) {
-  background: linear-gradient(135deg, #41abf6, #2298eb);
-}
+/* same navy blue as the meta bar, one uniform tone across every card */
+.cs-pipeline-step:nth-child(1),
+.cs-pipeline-step:nth-child(2),
+.cs-pipeline-step:nth-child(3),
+.cs-pipeline-step:nth-child(4),
 .cs-pipeline-step:nth-child(5) {
-  background: linear-gradient(135deg, #2298eb, #126eb0);
+  background: linear-gradient(135deg, #0a5a94, #004170);
 }
 
 .cs-pipeline-step .cs-pipeline-num { color: #fdfcf9; }
-.cs-pipeline-step .cs-pipeline-title { color: var(--pure-black); }
+.cs-pipeline-step .cs-pipeline-title { color: white; }
 .cs-pipeline-step .cs-pipeline-desc { color: #ffffff; }
 
 /* Bullet groups (Finding the Core Idea / Building the System / Refining Through Play) */

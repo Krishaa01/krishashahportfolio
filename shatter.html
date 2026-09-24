@@ -7,6 +7,62 @@
     <title>Shatter | Krisha Shah</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Shatter-only overrides: full-bleed layout for Overview, Concept and
+           Game Characters. Kept local to this page so the other case study
+           pages keep their centered/boxed layout. */
+        .cs-split {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .cs-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .cs-split-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+        }
+
+        .cs-split-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        .cs-fullbleed {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-left: clamp(24px, 6vw, 96px);
+            padding-right: clamp(24px, 6vw, 96px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 900px) {
+            .cs-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cs-split-title {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -90,32 +146,42 @@
 
         <!-- Overview -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">Project Overview</div>
-            <h2 class="cs-section-title cs-center">Every negative encounter leaves a permanent crack</h2>
-            <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                   Shatter is a 2D narrative RPG where a mask, not a health bar, shows emotional strain.
-                   Every negative encounter adds a permanent crack, building to a moment where the mask shatters
-                   and the character's faith in a supportive society breaks. Made in a game jam to explore social themes
-                   through simple mechanics and symbolism.
-                </p>
-                
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Project Overview</div>
+                        <h2 class="cs-split-title">Every negative encounter leaves a permanent crack</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Shatter is a 2D narrative RPG where a mask, not a health bar, shows emotional strain.
+                            Every negative encounter adds a permanent crack, building to a moment where the mask shatters
+                            and the character's faith in a supportive society breaks. Made in a game jam to explore social themes
+                            through simple mechanics and symbolism.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Concept -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">The Concept</div>
-            <h2 class="cs-section-title cs-center">A mask as a metaphor for belief</h2>
-            <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                   Shatter explores the fragile belief that society is fair and supportive. 
-                   The player wears a symbolic mask that cracks with each negative encounter: 
-                   judgement, hypocrisy, or indifference. The cracks build into a visual record 
-                   of the character's weakening trust, until the mask shatters and the illusion of a just,
-                   caring society collapses.
-                </p>
-                
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">The Concept</div>
+                        <h2 class="cs-split-title">A mask as a metaphor for belief</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Shatter explores the fragile belief that society is fair and supportive.
+                            The player wears a symbolic mask that cracks with each negative encounter:
+                            judgement, hypocrisy, or indifference. The cracks build into a visual record
+                            of the character's weakening trust, until the mask shatters and the illusion of a just,
+                            caring society collapses.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -199,11 +265,12 @@
             <div class="cs-section-label">Look</div>
             <h2 class="cs-section-title">Scene Screenshots</h2>
             <div class="cs-gallery-scroll">
-                <div class="cs-media-placeholder cs-gallery-item"><div class="cs-ph-icon">🖼</div><div class="cs-ph-title">Scene 1</div></div>
-                <div class="cs-media-placeholder cs-gallery-item"><div class="cs-ph-icon">🖼</div><div class="cs-ph-title">Scene 2</div></div>
-                <div class="cs-media-placeholder cs-gallery-item"><div class="cs-ph-icon">🖼</div><div class="cs-ph-title">Scene 3</div></div>
-                <div class="cs-media-placeholder cs-gallery-item"><div class="cs-ph-icon">🖼</div><div class="cs-ph-title">Scene 4</div></div>
-                <div class="cs-media-placeholder cs-gallery-item"><div class="cs-ph-icon">🖼</div><div class="cs-ph-title">Scene 5</div></div>
+                <img src="ss 1 shatter.jpeg" alt="Shatter scene 1">
+                <img src="ss 2 shatter.jpeg" alt="Shatter scene 2">
+                <img src="ss 3 shatter.jpeg" alt="Shatter scene 3">
+                <img src="ss 4 shatter.jpeg" alt="Shatter scene 4">
+                <img src="ss 5 shatter.jpeg" alt="Shatter scene 5">
+                <img src="ss 6 shatter.jpeg" alt="Shatter scene 6">
             </div>
         </section>
 
@@ -211,7 +278,7 @@
         <section class="cs-section">
             <div class="cs-section-label">Meet the Cast</div>
             <h2 class="cs-section-title">Game Characters</h2>
-            <div class="cs-characters-track" id="charactersTrack">
+            <div class="cs-characters-track cs-fullbleed" id="charactersTrack">
                 <div class="cs-character-card"><img src="shatter charact 1.png" alt="Shatter character 1"></div>
                 <div class="cs-character-card"><img src="shatter charact 2.png" alt="Shatter character 2"></div>
                 <div class="cs-character-card"><img src="shatter charact 3.png" alt="Shatter character 3"></div>
@@ -261,13 +328,13 @@
 
     <script src="main.js"></script>
     <script>
-        // Let a vertical mouse-wheel scroll the screenshot strip sideways while hovering it
+        // Let a vertical mouse-wheel scroll the screenshot strip sideways while hovering it.
+        // Always redirect (rather than only when |deltaY| > |deltaX|) so this works
+        // consistently with every mouse/trackpad, not just ones that send a "diagonal" delta.
         document.querySelectorAll('.cs-gallery-scroll').forEach(function (el) {
             el.addEventListener('wheel', function (e) {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    e.preventDefault();
-                    el.scrollLeft += e.deltaY;
-                }
+                e.preventDefault();
+                el.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
             }, { passive: false });
         });
 
@@ -308,10 +375,8 @@
             }, { passive: true });
 
             track.addEventListener('wheel', function (e) {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    e.preventDefault();
-                    track.scrollLeft += e.deltaY;
-                }
+                e.preventDefault();
+                track.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
             }, { passive: false });
         })();
     </script>
