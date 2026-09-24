@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Works | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            border-bottom: 6px solid var(--primary);
+            padding-bottom: 8px;
+            position: relative;
+        }
+
+        .works-header h1 {
+            font-size: 64px;
+            line-height: 1;
+        }
+
+        .star-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--zesty-orange);
+            border: 2px solid var(--pure-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transform: rotate(15deg);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .work-card {
+            text-align: center;
+        }
+
+        .work-card .stamp-border {
+            aspect-ratio: 4/3;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="works.html">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="works-header">
+            <h1 class="headline-xl">ALL WORKS</h1>
+            <div class="star-icon">★</div>
+            <div class="doodle" style="top: -20px; left: -40px;"><svg width="40" height="40" viewBox="0 0 100 100">
+                    <path d="M10 50 L50 10 L90 50 L50 90 Z" fill="none" stroke="#22c55e" stroke-width="8" />
+                </svg></div>
+        </div>
+
+        <div class="works-grid">
+            <!-- Project 1 -->
+            <div class="work-card" data-href="shatter.html">
+                <div class="project-card rotate-slight">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="shatter-cover.png" alt="Shatter Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px;">SHATTER</h4>
+                <span class="tag label-bold">GAME DESIGN</span>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="work-card" data-href="vr-mohenjo-daro.html">
+                <div class="project-card">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="kailasa-cover.png" alt="VR Mohenjo Daro Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">VR MOHENJO DARO</h4>
+                <span class="tag label-bold">VIRTUAL REALITY</span>
+            </div>
+
+            <!-- Project 2.5 -->
+            <div class="work-card" data-href="between-sand-and-silence.html">
+                <div class="project-card">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="msd title.jpg" alt="Between Sand and Silence Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">BETWEEN SAND AND SILENCE</h4>
+                <span class="tag label-bold">MULTISENSORY VR</span>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight-right">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="Bioscope.png" alt="Bioscope Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">BIOSCOPE</h4>
+                <span class="tag label-bold">UI/UX</span>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight-right">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="image 1.jpg" alt="Comic Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">BORROWED TIME</h4>
+                <span class="tag label-bold">COMIC BOOK</span>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="work-card">
+                <div class="project-card">
+                    <div class="stamp-border" style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="hologram description.jpg" alt="Hologram project description"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">HOLOGRAM</h4>
+                <span class="tag label-bold">PROTOTYPE</span>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight">
+                    <div class="stamp-border" style="background: #d8e2ff; border-style: dotted;">
+                        <div style="font-size: 48px; color: var(--secondary); transform: rotate(-15deg);">🖌️</div>
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">DOODLE SERIES</h4>
+                <span class="tag label-bold">PLAYGROUND</span>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight-right">
+                    <div class="stamp-border"
+                        style="background: #fef08a; display: flex; align-items: center; justify-content: center;">
+                        <h3 class="headline-md" style="font-size: 48px; transform: scaleX(0.8);">A</h3>
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">TYPOGRAPHY POSTERS</h4>
+                <span class="tag label-bold">GRAPHIC DESIGN</span>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="work-card">
+                <div class="project-card">
+                    <div class="stamp-border"
+                        style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: var(--secondary); border-radius: 50%; box-shadow: -10px -10px 0 #111;">
+                        </div>
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">3D ASSETS</h4>
+                <span class="tag label-bold">3D / MOTION</span>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight">
+                    <div class="stamp-border"
+                        style="background: #ffdbca; border-style: dashed; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 48px;">👕</span>
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">MERCHANDISE</h4>
+                <span class="tag label-bold">BRAND</span>
+            </div>
+
+            <!-- Project 10 -->
+            <div class="work-card">
+                <div class="project-card rotate-slight-right">
+                    <div class="stamp-border"
+                        style="background: #fca5a5; display: flex; align-items: center; justify-content: center;">
+                        <div
+                            style="background: var(--pure-black); color: var(--zesty-orange); padding: 8px 16px; font-weight: 800; font-family: monospace; font-size: 20px; text-transform: uppercase;">
+                            GAME OVER</div>
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">GAME JAM 2023</h4>
+                <span class="tag label-bold">GAME DESIGN</span>
+            </div>
+        </div>
+
+        <!-- Project Details Modal -->
+        <div id="projectModal" class="project-modal-overlay">
+            <div class="project-modal-wrapper">
+                <button id="modalCloseBtn" class="modal-close-btn">✕</button>
+                <button id="modalPrevBtn" class="modal-nav-btn modal-prev-btn">‹</button>
+                <button id="modalNextBtn" class="modal-nav-btn modal-next-btn">›</button>
+
+                <div class="project-modal-inner">
+                    <div class="modal-scroll-content" id="modalImageContainer">
+                        <!-- Images will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>

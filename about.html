@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .about-image {
+            background: #d8e2ff;
+            padding: 20px;
+            transform: rotate(-2deg);
+        }
+
+        .about-image-inner {
+            background: #fdf5e6;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--pure-black);
+            position: relative;
+        }
+
+        .about-content {
+            border: 4px solid var(--pure-black);
+            padding: 40px;
+            background: white;
+            position: relative;
+            transform: rotate(1deg);
+        }
+
+        .skills-section {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .skill-sticker {
+            border: 2px solid var(--pure-black);
+            border-radius: var(--rounded-lg);
+            padding: 16px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 120px;
+            box-shadow: 2px 2px 0 var(--pure-black);
+            transition: translate 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .skill-sticker:hover {
+            translate: 0 -10px;
+            box-shadow: 8px 12px 0 var(--pure-black);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--rounded-sm);
+            background: var(--surface-container-high);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        /* Experience Timeline */
+        .experience-section {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-highlight {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .title-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: -8px;
+            right: -8px;
+            height: 16px;
+            background: #bfdbfe;
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+
+        .timeline {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            border-left: 2px dashed #86efac;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 42%;
+            background: white;
+            border: 3px solid var(--pure-black);
+            border-radius: var(--rounded-md);
+            padding: 24px;
+            box-shadow: 4px 4px 0 var(--pure-black);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(1) .timeline-content {
+            transform: rotate(-2deg);
+        }
+
+        .timeline-item:nth-child(2) .timeline-content {
+            transform: rotate(2deg);
+        }
+
+        .timeline-item:nth-child(3) .timeline-content {
+            transform: rotate(-1deg);
+        }
+
+        .timeline-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 3px solid var(--pure-black);
+            background: white;
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+
+        .timeline-date {
+            border: 2px solid var(--pure-black);
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            white-space: nowrap;
+            color: var(--pure-black);
+        }
+
+        .timeline-list {
+            list-style: none;
+            padding-left: 12px;
+        }
+
+        .timeline-list li {
+            position: relative;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--on-surface-variant);
+        }
+
+        .timeline-list li::before {
+            content: '+';
+            position: absolute;
+            left: -16px;
+            color: var(--pure-black);
+            font-weight: 800;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="works.html">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="about-image">
+                <div class="about-image-inner">
+                    <h3 class="headline-md" style="text-align: center;">PULKIT'S<br>PORTFOLIO</h3>
+                    <!-- Placeholder for doodle -->
+                    <div class="doodle" style="top: 10%; right: 10%;"><svg width="40" height="40" viewBox="0 0 100 100">
+                            <path d="M10 50 Q 50 10 90 50" stroke="#ff8e4d" stroke-width="8" fill="none" />
+                        </svg></div>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="doodle" style="top: -20px; right: -20px;"><svg width="60" height="60" viewBox="0 0 100 100">
+                        <rect x="20" y="20" width="60" height="60" fill="#22c55e" transform="rotate(15 50 50)" />
+                    </svg></div>
+                <h1 class="headline-xl" style="margin-bottom: 24px;">What's <span
+                        style="color: var(--primary);">good!</span></h1>
+                <p class="body-md" style="margin-bottom: 24px;">
+                    Hello, My name is Krisha and I am an Interaction Designer with a strong passion for creating immersive
+                    and innovative digital experiences. My interests span across Virtual Reality
+                    development, 3D rendering, and animation, where I enjoy bringing ideas
+                    to life through engaging visuals and interactive storytelling. I also design
+                    comics and explore spatial and 3D world-building, blending creativity and
+                    technology to craft meaningful, immersive environments. Constantly
+                    driven by curiosity and innovation, I aim to reimagine digital interactions
+                    and design experiences that connect people in new and exciting ways.
+
+                </p>
+                <div style="display: flex; gap: 16px;">
+                    <a href="#" class="btn" style="background: var(--pure-black); color: white;">Let's Collab ⚡</a>
+                    <a href="#" class="btn">View Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <h2 class="headline-lg">My Skills</h2>
+            <p class="body-md" style="color: var(--outline);">The tools I use to break the internet (beautifully).</p>
+
+            <div class="skills-grid">
+                <div class="skill-sticker" style="transform: rotate(-3deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="blender-icon.png" alt="Blender"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">BLENDER</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(2deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="unity-icon.png" alt="Unity"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">UNITY</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(-1deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="touchdesigner-icon.png"
+                            alt="Touch Designer" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">TOUCH DESIGNER</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(4deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="figma-icon.png" alt="Figma"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">FIGMA</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(-2deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="photoshop-icon.png"
+                            alt="Photoshop" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">PHOTOSHOP</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(1deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="aftereffects-icon.png"
+                            alt="After Effects" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">AFTER EFFECTS</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(-4deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="premiere-icon.png"
+                            alt="Premiere Pro" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">PREMIERE PRO</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(3deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="indesign-icon.png" alt="InDesign"
+                            style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">INDESIGN</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(-1deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="procreate-icon.jpg"
+                            alt="Procreate" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">PROCREATE</span>
+                </div>
+                <div class="skill-sticker" style="transform: rotate(2deg);">
+                    <div class="skill-icon" style="background: transparent;"><img src="procreate-dreams-icon.png"
+                            alt="Procreate Dreams" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <span class="label-bold" style="font-size: 10px;">PROCREATE DREAMS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section">
+            <h2 class="headline-lg title-highlight">My Experience</h2>
+
+            <div class="timeline">
+                <!-- Doodles -->
+                <div class="doodle" style="top: 20px; right: -40px;">
+                    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="#86efac" stroke-width="8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 20,50 Q 30,20 40,50 T 60,50 T 80,50" />
+                    </svg>
+                </div>
+                <div class="doodle" style="bottom: 0; left: -100px; transform: rotate(-15deg);">
+                    <svg width="100" height="80" viewBox="0 0 100 80" fill="none" stroke="#e6ccb2" stroke-width="6"
+                        stroke-linejoin="round" stroke-linecap="round">
+                        <rect x="10" y="20" width="80" height="50" rx="10" />
+                        <line x1="22" y1="45" x2="38" y2="45" />
+                        <line x1="30" y1="37" x2="30" y2="53" />
+                        <circle cx="60" cy="45" r="4" fill="#e6ccb2" />
+                        <circle cx="70" cy="35" r="4" fill="#e6ccb2" />
+                        <circle cx="80" cy="45" r="4" fill="#e6ccb2" />
+                        <circle cx="70" cy="55" r="4" fill="#e6ccb2" />
+                    </svg>
+                </div>
+
+                <!-- Card 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <span style="font-size: 14px; color: var(--pure-black);">☆</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="headline-md" style="color: var(--kelly-green); font-size: 24px;">Kochi
+                                    Muziris<br>Biennale</h3>
+                                <p class="body-md" style="color: var(--outline); font-size: 14px; margin-top: 4px;">
+                                    Assistant Project Coordinator</p>
+                            </div>
+                            <div class="timeline-date" style="background: #86efac;">
+                                Nov 2025 -<br>Dec 2025
+                            </div>
+                        </div>
+                        <ul class="timeline-list">
+                            <li>Assisted in the production and installation of artworks.</li>
+                            <li>Gaining hands-on experience in exhibition planning.</li>
+                            <li>On-site execution with exposure to professional art practices and collaborative
+                                workflows.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <span style="font-size: 14px; color: var(--pure-black);">👻</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="headline-md" style="color: var(--electric-blue); font-size: 24px;">Ample
+                                    Designs</h3>
+                                <p class="body-md" style="color: var(--outline); font-size: 14px; margin-top: 4px;">
+                                    Assistant Project Coordinator </p>
+                            </div>
+                            <div class="timeline-date" style="background: #bfdbfe;">
+                                Aug 2024 - Jan 2025
+                            </div>
+                        </div>
+                        <ul class="timeline-list">
+                            <li>Communicating with clients to understand their requirements.</li>
+                            <li>relaying their vision and expectations to the design team, ensuring deadlines are met,
+                                and delivering the final work to clients promptly.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <span style="font-size: 14px; color: var(--pure-black);">✏️</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="headline-md" style="color: #c2410c; font-size: 24px;">WITH Festival
+                                </h3>
+                                <p class="body-md" style="color: var(--outline); font-size: 14px; margin-top: 4px;">
+                                    Managed live streaming operations for a two-day</p>
+                            </div>
+                            <div class="timeline-date" style="background: #fed7aa;">
+                                2 days
+                            </div>
+                        </div>
+                        <ul class="timeline-list">
+                            <li>Managed live streaming operations for a two-day on YouTube, ensuring smooth real-time
+                                broadcast and audience engagement.</li>
+                            <li>Handled technical setup and on-site coordination to deliver uninterrupted live coverage
+                                of the event.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>

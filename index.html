@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krisha's Portfolio | Doodle Game Theory</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="works.html">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="gameStage" class="game-stage" aria-label="Scroll-driven interactive portfolio game">
+            <div id="cloudsLayer" class="clouds-layer"></div>
+            <div id="mainLayer" class="main-layer"></div>
+            <div id="scrollHint" class="scroll-hint"><span>Scroll to explore</span><span class="arrow">→</span></div>
+            <div id="progressTrack" class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+            <div id="portalOverlay" class="portal-overlay"></div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
+
