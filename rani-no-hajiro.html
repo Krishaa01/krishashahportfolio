@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rani no Hajiro | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Rani no Hajiro-only overrides. Kept local to this page so the
+           other case study pages are unaffected. */
+
+        :root {
+            --rnh-maroon: #6d1b2f;
+            --rnh-maroon-light: #8a2540;
+            --rnh-cream: #f3e8d0;
+        }
+
+        /* maroon for the meta bar and the research process roadmap */
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5 {
+            background: linear-gradient(135deg, var(--rnh-maroon-light), var(--rnh-maroon));
+        }
+
+        .cs-pipeline-step:nth-child(1),
+        .cs-pipeline-step:nth-child(2),
+        .cs-pipeline-step:nth-child(3),
+        .cs-pipeline-step:nth-child(4),
+        .cs-pipeline-step:nth-child(5) {
+            background: linear-gradient(135deg, var(--rnh-maroon-light), var(--rnh-maroon));
+        }
+
+        /* full-bleed "patch" layout — used for What is Rani no Hajiro, the
+           Market, and Research Question sections */
+        .cs-split {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        /* Research Question uses cream instead, so it visually stands apart */
+        .cs-split.cs-split-cream {
+            background: var(--rnh-cream);
+        }
+
+        .cs-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .cs-split-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+        }
+
+        .cs-split-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        .cs-split-cream .cs-section-label {
+            color: var(--rnh-maroon);
+        }
+
+        /* Themes — cream cards, maroon text */
+        .cs-themes-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .cs-theme-card {
+            background: var(--rnh-cream);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+
+        .cs-theme-card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 24px rgba(17, 17, 17, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-theme-name {
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--rnh-maroon);
+            margin-bottom: 10px;
+        }
+
+        .cs-theme-desc {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #5a3040;
+        }
+
+        /* Insights & Observations — side-by-side boxes */
+        .cs-io-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .cs-io-row+.cs-io-row {
+            margin-top: 20px;
+        }
+
+        .cs-io-box {
+            border: 3px solid var(--pure-black);
+            border-radius: 14px;
+            padding: 24px 28px;
+        }
+
+        .cs-io-label {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+        }
+
+        .cs-io-observation {
+            background: var(--rnh-maroon);
+            color: white;
+        }
+
+        .cs-io-observation .cs-io-label {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .cs-io-insight {
+            background: var(--rnh-cream);
+            color: var(--rnh-maroon);
+        }
+
+        .cs-io-insight .cs-io-label {
+            color: rgba(109, 27, 47, 0.65);
+        }
+
+        .cs-io-box p {
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 900px) {
+            .cs-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cs-split-title {
+                font-size: 32px;
+            }
+
+            .cs-themes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cs-io-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="works.html" class="active">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="works.html" class="cs-back">← Back to All Works</a>
+
+        <!-- Hero -->
+        <section class="cs-hero">
+            <div class="cs-hero-text">
+                <span class="cs-tag">Design Research · Ethnographic Study</span>
+                <h1 class="headline-xl">RANI NO HAJIRO</h1>
+                <p class="cs-hero-tagline">A field study of memory, heritage, and everyday life around Ahmedabad's Rani no Hajiro market.</p>
+            </div>
+            <div class="cs-hero-media">
+                <img src="RNC cover.jpg" alt="Rani no Hajiro cover">
+            </div>
+        </section>
+
+        <!-- Meta -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item cs-meta-c1">
+                <div class="cs-meta-label">Project Type</div>
+                <div class="cs-meta-value">Design Research</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c2">
+                <div class="cs-meta-label">Method</div>
+                <div class="cs-meta-value">Field Interviews & Observation</div>
+            </div>
+            <div class="cs-meta-item cs-meta-featured">
+                <div class="cs-meta-label">Output</div>
+                <div class="cs-meta-value">Zine</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c3">
+                <div class="cs-meta-label">Focus</div>
+                <div class="cs-meta-value">Rani no Hajiro Market</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c4">
+                <div class="cs-meta-label">Themes Identified</div>
+                <div class="cs-meta-value">5</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c5">
+                <div class="cs-meta-label">Location</div>
+                <div class="cs-meta-value">Old City, Ahmedabad</div>
+            </div>
+        </div>
+
+        <!-- What is Rani no Hajiro -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">What is Rani no Hajiro?</div>
+                        <h2 class="cs-split-title">A resting place of queens</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Rani no Hajiro is a historical place in the old city of Ahmedabad. It is the resting place
+                            of the queens from the time of the Gujarat Sultanate, built around the year 1445. The
+                            tombs are made of marble and have beautiful carvings, showing a mix of Hindu, Jain, and
+                            Islamic designs. Some families still live near the tombs and take care of them. It is a
+                            peaceful space with a strong connection to the past.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Market Around Rani no Hajiro</div>
+                        <h2 class="cs-split-title">A market that keeps the heritage alive</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Right outside the tomb complex, there is a busy and colorful market. It is famous for
+                            selling women's clothes, jewelry, and Garba dresses during festivals. Many small stalls
+                            are set up, and you can also find mouth fresheners called Mukhwas. People from all over
+                            the city come here to shop, especially during festivals like Navratri. This market brings
+                            life to the area and helps keep the heritage of the place alive through everyday
+                            activity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Question -->
+        <section class="cs-section">
+            <div class="cs-split cs-split-cream">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Research Question</div>
+                        <h2 class="cs-split-title">What we set out to understand</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            How does Rani no Hajiro market contribute to the cultural and historical identity of Old
+                            City (Ahmedabad), and how do social and economic factors impact its traditional essence
+                            and long-term viability?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Themes -->
+        <section class="cs-section">
+            <div class="cs-section-label">Findings</div>
+            <h2 class="cs-section-title">Themes</h2>
+            <div class="cs-themes-grid">
+                <div class="cs-theme-card">
+                    <div class="cs-theme-name">Nostalgia</div>
+                    <div class="cs-theme-desc">Vendors and customers value the heritage and traditional shopping
+                        experience.</div>
+                </div>
+                <div class="cs-theme-card">
+                    <div class="cs-theme-name">Uncertainty</div>
+                    <div class="cs-theme-desc">Vendors facing seasonal fluctuations and online competition.</div>
+                </div>
+                <div class="cs-theme-card">
+                    <div class="cs-theme-name">Frustration</div>
+                    <div class="cs-theme-desc">Infrastructure issues like flooding, congestion, and waste management
+                        affecting daily life.</div>
+                </div>
+                <div class="cs-theme-card">
+                    <div class="cs-theme-name">Determination</div>
+                    <div class="cs-theme-desc">Vendors and locals work hard to keep the market alive despite
+                        challenges.</div>
+                </div>
+                <div class="cs-theme-card">
+                    <div class="cs-theme-name">Connection</div>
+                    <div class="cs-theme-desc">The market is more than just a place to shop; it brings people
+                        together.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Research Process -->
+        <section class="cs-section">
+            <div class="cs-section-label">Process</div>
+            <h2 class="cs-section-title">The Research Process</h2>
+            <p class="cs-body-text" style="margin-bottom: 40px;">
+                A road map through the project — from research and ideation to design and testing, leading to a
+                user-centric solution.
+            </p>
+            <div class="cs-pipeline">
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">01</div>
+                    <div class="cs-pipeline-title">Site Research</div>
+                    <div class="cs-pipeline-desc">Understanding Rani no Hajiro's history and heritage</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">02</div>
+                    <div class="cs-pipeline-title">Market Observation</div>
+                    <div class="cs-pipeline-desc">Studying the market's rhythms and role</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">03</div>
+                    <div class="cs-pipeline-title">Field Interviews</div>
+                    <div class="cs-pipeline-desc">Gathering vendor and caretaker perspectives</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">04</div>
+                    <div class="cs-pipeline-title">Thematic Synthesis</div>
+                    <div class="cs-pipeline-desc">Identifying patterns across the research</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">05</div>
+                    <div class="cs-pipeline-title">Zine Production</div>
+                    <div class="cs-pipeline-desc">Translating research into a tactile output</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights and Observations -->
+        <section class="cs-section">
+            <div class="cs-section-label">Field Notes</div>
+            <h2 class="cs-section-title">Insights and Observations</h2>
+
+            <div class="cs-io-row">
+                <div class="cs-io-box cs-io-observation">
+                    <div class="cs-io-label">Observation</div>
+                    <p>They were concerned that we weren't students and that some of us were reporters who would
+                        alert the authorities — because the location where they set up their stalls is illegal and
+                        the government has proposed two FIRs.</p>
+                </div>
+                <div class="cs-io-box cs-io-insight">
+                    <div class="cs-io-label">Insight</div>
+                    <p>The family is anxious and distrustful of outsiders due to ongoing eviction threats. They rely
+                        on customers, but fear that media or official attention could lead to displacement — showing
+                        how visibility in informal economies is both vital and risky.</p>
+                </div>
+            </div>
+
+            <div class="cs-io-row">
+                <div class="cs-io-box cs-io-observation">
+                    <div class="cs-io-label">Observation</div>
+                    <p>Despite being a seasonal market, they operate their business full time since they depend on
+                        their devoted clients due to their generational ownership.</p>
+                </div>
+                <div class="cs-io-box cs-io-insight">
+                    <div class="cs-io-label">Insight</div>
+                    <p>The market's generational ownership makes vendors rely on loyal customers, keeping it active
+                        year round. Stability matters more than expansion, as their inherited trade is their main
+                        livelihood. This shows how tradition and necessity shape their business choices.</p>
+                </div>
+            </div>
+
+            <div class="cs-io-row">
+                <div class="cs-io-box cs-io-observation">
+                    <div class="cs-io-label">Observation</div>
+                    <p>The government is not helping in looking after the heritage as the caretakers have taken sole
+                        responsibility on themselves, and they do not take a stand for themselves as their house is
+                        demolished.</p>
+                </div>
+                <div class="cs-io-box cs-io-insight">
+                    <div class="cs-io-label">Insight</div>
+                    <p>With their home demolished and family members sick, the caretakers have no choice but to stay.
+                        Leaving for other work means losing the only shelter they have — the tomb they maintain. This
+                        highlights how heritage preservation for them is not a job but a means of survival.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outcome -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Outcome</div>
+                        <h2 class="cs-split-title">A zine, translated from the field</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            The final output of this project is a zine that translates our research on Rani no
+                            Hajiro into an accessible, visual narrative — bringing together the personas, spatial
+                            mapping, and everyday rhythms of the place into a single tactile object.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Zine -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Why Zine?</div>
+                        <h2 class="cs-split-title">Research you can hold</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            A zine let us present research in a way that's accessible and engaging, rather than
+                            locking it into a formal academic report.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video -->
+        <section class="cs-section">
+            <div class="cs-section-label">Watch</div>
+            <h2 class="cs-section-title">Rani no Hajiro</h2>
+            <div class="cs-video-frame">
+                <video src="RNC video.mkv" autoplay muted loop playsinline></video>
+            </div>
+        </section>
+
+        <!-- Project navigation -->
+        <div class="cs-project-nav">
+            <a href="bioscope.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
+            <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
+            <a href="shatter.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

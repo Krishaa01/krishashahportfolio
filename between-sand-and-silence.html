@@ -291,6 +291,9 @@
         <section class="cs-section">
             <div class="cs-section-label">Walkthrough</div>
             <h2 class="cs-section-title">Experience Storyboard</h2>
+            <div class="cs-story-wrap">
+            <button class="cs-story-arrow cs-story-arrow-left" id="storyPrev" aria-label="Scroll left">←</button>
+            <button class="cs-story-arrow cs-story-arrow-right" id="storyNext" aria-label="Scroll right">→</button>
             <div class="cs-story-track" id="storyTrack">
                 <div class="cs-story-item">
                     <div class="cs-story-media"><img src="msd ux 1.png" alt="1. Entry"></div>
@@ -389,6 +392,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- Project navigation -->
@@ -423,6 +427,24 @@
                 el.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
             }, { passive: false });
         });
+
+        // Left/right arrow buttons for the storyboard.
+        (function () {
+            var track = document.getElementById('storyTrack');
+            var prevBtn = document.getElementById('storyPrev');
+            var nextBtn = document.getElementById('storyNext');
+            if (!track || !prevBtn || !nextBtn) return;
+            var step = function () {
+                var item = track.querySelector('.cs-story-item');
+                return item ? item.getBoundingClientRect().width + 28 : 408;
+            };
+            prevBtn.addEventListener('click', function () {
+                track.scrollLeft -= step();
+            });
+            nextBtn.addEventListener('click', function () {
+                track.scrollLeft += step();
+            });
+        })();
     </script>
 </body>
 

@@ -126,15 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
             modalInner.scrollTop = 0;
             
             // Set modal wrapper border color
-            if (index === 4) {
-                modalWrapper.style.background = 'var(--pure-black)'; // Black for project 4
+            if (index === 5) {
+                modalWrapper.style.background = 'var(--pure-black)'; // Black for Borrowed Time
             } else {
                 modalWrapper.style.background = ''; // Revert to CSS default
             }
 
             // Set Image
             modalImageContainer.innerHTML = ''; // Clear previous images
-            if (index === 4) {
+            if (index === 5) {
                 const img = document.createElement('img');
                 img.src = 'Comic jpeg.jpg';
                 img.alt = 'Comic Project Details';
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.style.borderBottomLeftRadius = '16px';
                 img.style.borderBottomRightRadius = '16px';
                 modalImageContainer.appendChild(img);
-            } else if (index === 5) {
+            } else if (index === 6) {
                 modalImageContainer.style.height = 'auto';
 
                 const descriptionImage = document.createElement('img');
