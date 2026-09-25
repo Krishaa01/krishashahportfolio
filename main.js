@@ -238,40 +238,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Lazy-load heavy videos: only fetch/play a video once it's actually near the
-// viewport, instead of every <video> on the page trying to download and
-// autoplay the instant the page loads (this was the main cause of pages
-// feeling heavy / hanging on load, especially with multi-MB clips).
-document.addEventListener('DOMContentLoaded', () => {
-    var lazyVideos = document.querySelectorAll('video[data-src]');
-    if (!lazyVideos.length) return;
+// Lazy-load heavy videos: defer fetching them until just after the rest of
+// the page has rendered, instead of every <video> on the page trying to
+// download and autoplay the instant the HTML is parsed (this was the main
+// cause of pages feeling heavy / hanging on load, especially with multi-MB
+// clips). Deliberately NOT gated behind IntersectionObserver — that turned
+// out to be unreliable here (some browsers never fired it for these
+// elements, leaving videos permanently stuck unloaded/black).
+function loadLazyVideo(video) {
+    if (video.src) return; // already loaded
+    var src = video.getAttribute('data-src');
+    if (!src) return;
+    video.src = src;
+    video.removeAttribute('data-src');
+    var playPromise = video.play();
+    if (playPromise && playPromise.catch) playPromise.catch(function () { /* autoplay blocked, ignore */ });
+}
 
-    function loadVideo(video) {
-        if (video.src) return; // already loaded
-        var src = video.getAttribute('data-src');
-        if (!src) return;
-        video.src = src;
-        video.removeAttribute('data-src');
-        var playPromise = video.play();
-        if (playPromise && playPromise.catch) playPromise.catch(function () { /* autoplay blocked, ignore */ });
-    }
+function startLazyVideos() {
+    document.querySelectorAll('video[data-src]').forEach(loadLazyVideo);
+}
 
-    if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    loadVideo(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { rootMargin: '400px 0px' }); // start fetching a bit before it scrolls into view
-
-        lazyVideos.forEach(function (video) { observer.observe(video); });
+document.addEventListener('DOMContentLoaded', function () {
+    // Give the rest of the page (images, layout, above-the-fold paint) a
+    // moment to settle first, then start fetching video.
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(startLazyVideos, { timeout: 1500 });
     } else {
-        // No IntersectionObserver support: just load everything after the
-        // rest of the page has finished loading instead of racing it.
-        window.addEventListener('load', function () {
-            lazyVideos.forEach(loadVideo);
-        });
+        setTimeout(startLazyVideos, 300);
     }
 });
+// Safety net: if something above never ran (e.g. DOMContentLoaded already
+// fired before this script executed), make sure videos still start after
+// full page load.
+window.addEventListener('load', startLazyVideos);
