@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioscope | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Bioscope-only overrides. Kept local to this page so the other
+           case study pages are unaffected. */
+
+        /* red for the meta bar and the design process roadmap */
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5 {
+            background: linear-gradient(135deg, #c23b30, #8f1d16);
+        }
+
+        .cs-pipeline-step:nth-child(1),
+        .cs-pipeline-step:nth-child(2),
+        .cs-pipeline-step:nth-child(3),
+        .cs-pipeline-step:nth-child(4),
+        .cs-pipeline-step:nth-child(5) {
+            background: linear-gradient(135deg, #c23b30, #8f1d16);
+        }
+
+        /* full-bleed "patch" layout for Overview / Concept / Inside the
+           Bioscope, same as the other case study pages */
+        .cs-split {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .cs-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .cs-split-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+        }
+
+        .cs-split-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        @media (max-width: 900px) {
+            .cs-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cs-split-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="works.html" class="active">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="works.html" class="cs-back">← Back to All Works</a>
+
+        <!-- Hero -->
+        <section class="cs-hero">
+            <div class="cs-hero-text">
+                <span class="cs-tag">Interactive Installation</span>
+                <h1 class="headline-xl">LOOKING THROUGH THE LENSES</h1>
+                <p class="cs-hero-tagline">A nostalgic device reimagined with technology.</p>
+            </div>
+            <div class="cs-hero-media">
+                <img src="bio cover.jpg" alt="Bioscope cover">
+            </div>
+        </section>
+
+        <!-- Meta -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item cs-meta-c1">
+                <div class="cs-meta-label">Project Type</div>
+                <div class="cs-meta-value">Interactive Installation</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c2">
+                <div class="cs-meta-label">Role</div>
+                <div class="cs-meta-value">Concept, Video Content, Tech Integration, Design & Installation</div>
+            </div>
+            <div class="cs-meta-item cs-meta-featured">
+                <div class="cs-meta-label">Duration</div>
+                <div class="cs-meta-value">4 Weeks</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c3">
+                <div class="cs-meta-label">Team</div>
+                <div class="cs-meta-value">4 Members</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c4">
+                <div class="cs-meta-label">Installed At</div>
+                <div class="cs-meta-value">VR Mall, Surat</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c5">
+                <div class="cs-meta-label">Tools</div>
+                <div class="cs-meta-value">AI Video Tools, TouchDesigner, AE, Premiere, Photoshop</div>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Project Overview</div>
+                        <h2 class="cs-split-title">A street-side bioscope, reimagined</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Looking Through the Lenses is an interactive installation that reimagines the traditional
+                            street-side bioscope for a contemporary setting. Created for the Dumas Art Festival, the
+                            project takes the form of a handcrafted wooden bioscope designed for six viewers, inspired
+                            by the nostalgic experience of looking through small lenses to watch moving images. Inside,
+                            four looping surreal video artworks explore imaginative and speculative themes through
+                            cinematic storytelling and AI-generated visuals. Each viewer can independently switch
+                            between the videos using rotary regulators, making the experience personal and
+                            interactive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">The Concept</div>
+                        <h2 class="cs-split-title">Nostalgia meets contemporary technology</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Looking Through the Lenses combines the nostalgia of the traditional street-side bioscope
+                            with contemporary technology. Its handcrafted wooden structure and individual viewing
+                            lenses preserve the curiosity and wonder of the original experience, while AI-generated
+                            surreal videos introduce contemporary storytelling. Rotary regulators allow viewers to
+                            switch between four video artworks, adding a simple layer of interaction. By blending
+                            traditional craftsmanship, digital media, and interaction, the project reimagines the
+                            bioscope as a contemporary storytelling experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design process -->
+        <section class="cs-section">
+            <div class="cs-section-label">The Design Process</div>
+            <h2 class="cs-section-title">From research to a working installation</h2>
+            <p class="cs-body-text" style="margin-bottom: 40px;">
+                A road map through the project — from research and ideation to design and testing, leading to a
+                user-centric solution.
+            </p>
+            <div class="cs-pipeline">
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">01</div>
+                    <div class="cs-pipeline-title">Idea Exploration</div>
+                    <div class="cs-pipeline-desc">Initial concept research</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">02</div>
+                    <div class="cs-pipeline-title">Concept Development</div>
+                    <div class="cs-pipeline-desc">Defining installation approach</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">03</div>
+                    <div class="cs-pipeline-title">Content Creation</div>
+                    <div class="cs-pipeline-desc">Surreal video development</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">04</div>
+                    <div class="cs-pipeline-title">Tech Integration</div>
+                    <div class="cs-pipeline-desc">Hardware and software system setup</div>
+                </div>
+                <div class="cs-pipeline-step">
+                    <div class="cs-pipeline-num">05</div>
+                    <div class="cs-pipeline-title">Installation and Execution</div>
+                    <div class="cs-pipeline-desc">Final bioscope installation</div>
+                </div>
+            </div>
+
+            <div class="cs-bullet-groups">
+                <div class="cs-bullet-card">
+                    <h3>Understanding the Bioscope Idea</h3>
+                    <ul>
+                        <li>Researching the history and cultural significance of traditional bioscopes</li>
+                        <li>Exploring how nostalgia and curiosity shaped the viewing experience</li>
+                        <li>Identifying ways to reinterpret the device for a contemporary audience</li>
+                    </ul>
+                </div>
+                <div class="cs-bullet-card">
+                    <h3>Developing the Interactive System</h3>
+                    <ul>
+                        <li>Designing the bioscope structure for six simultaneous viewers</li>
+                        <li>Integrating screens and rotary regulators for video switching</li>
+                        <li>Combining handcrafted construction with simple technological interaction</li>
+                    </ul>
+                </div>
+                <div class="cs-bullet-card">
+                    <h3>Creating the Surreal Video Content</h3>
+                    <ul>
+                        <li>Developing four speculative video narratives for the bioscope</li>
+                        <li>Experimenting with AI-generated visuals and cinematic storytelling</li>
+                        <li>Exploring themes from everyday culture, including the surreal idea of tea extinction in
+                            Gujarat</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project glimpses -->
+        <section class="cs-section">
+            <div class="cs-section-label">Look</div>
+            <h2 class="cs-section-title">Project Glimpses</h2>
+            <div class="cs-glimpse-track" id="glimpseTrack"></div>
+        </section>
+
+        <!-- Inside the Bioscope -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Inside the Bioscope</div>
+                        <h2 class="cs-split-title">Chai na Milegi Dubara</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Of the four videos presented inside the bioscope, this piece takes a surreal approach to
+                            reimagining an everyday reality. Through AI-generated visuals, cinematic sequences, and
+                            speculative storytelling, it creates a world that feels familiar yet strangely out of
+                            place — a speculative film imagining a world where tea becomes extinct in Gujarat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept of the video -->
+        <section class="cs-section">
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">The Concept</div>
+                        <h2 class="cs-split-title">When something ordinary suddenly vanishes</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            This video explores a surreal speculative scenario — a world where tea suddenly becomes
+                            extinct. In a place like Gujarat, where tea is deeply woven into everyday life and social
+                            culture, its disappearance creates a strange and unsettling reality. The film imagines how
+                            people who depend on tea as a daily ritual respond when something so ordinary suddenly
+                            vanishes. The visuals were first manually filmed using staged scenes and props based on a
+                            scripted narrative, and later transformed using AI tools to create surreal imagery. This
+                            process blends real footage with AI manipulation to build a dreamlike interpretation of a
+                            familiar cultural habit. The video is one of the four looping narratives presented inside
+                            the bioscope installation — viewers can switch to this film using the rotary regulators.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chai na Milegi Dubara video -->
+        <section class="cs-section">
+            <div class="cs-section-label">Watch</div>
+            <h2 class="cs-section-title">Chai na Milegi Dubara</h2>
+            <div class="cs-video-frame">
+                <video src="chai na milegi dubara.mp4" autoplay controls playsinline></video>
+            </div>
+            <p class="cs-video-caption">If sound doesn't start automatically, your browser has likely blocked
+                autoplay-with-audio — press play above.</p>
+        </section>
+
+        <!-- YouTube CTA -->
+        <div class="cs-proto-banner">
+            <div>
+                <div class="cs-proto-label">Watch in Full</div>
+                <div class="cs-proto-title">Watch Chai na Milegi Dubara on YouTube</div>
+            </div>
+            <a href="https://youtu.be/QZb7TloJwP8?si=79chDbL-sG7qWU6a" target="_blank" rel="noopener" class="cs-proto-btn">▶ Watch on YouTube ↗</a>
+        </div>
+
+        <!-- Project navigation -->
+        <div class="cs-project-nav">
+            <a href="between-sand-and-silence.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
+            <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
+            <a href="shatter.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Project Glimpses — infinite coverflow carousel, same as the other case study pages
+        (function () {
+            var track = document.getElementById('glimpseTrack');
+            if (!track) return;
+
+            var files = [
+                'bio -1.jpg', 'bio -2.jpg', 'Bioscope.png', 'bio 0.1.jpg', 'bio 2.jpg',
+                'bio 1.jpeg', 'bio 6.jpeg', 'bio 0.jpg', 'bio 4.jpg', 'bio 3.jpg', 'bio 7.mp4'
+            ];
+            var setCount = 3; // triplicate so we can loop seamlessly in both directions
+
+            for (var s = 0; s < setCount; s++) {
+                files.forEach(function (file) {
+                    var item = document.createElement('div');
+                    item.className = 'cs-glimpse-item';
+                    var isVideo = /\.mp4$/i.test(file);
+                    var media = document.createElement(isVideo ? 'video' : 'img');
+                    media.src = file;
+                    if (isVideo) {
+                        media.autoplay = true;
+                        media.muted = true;
+                        media.loop = true;
+                        media.playsInline = true;
+                    } else {
+                        media.alt = file.replace(/\.(jpg|jpeg|png)$/i, '');
+                        media.draggable = false;
+                    }
+                    item.appendChild(media);
+                    track.appendChild(item);
+                });
+            }
+
+            function updateScale() {
+                var rect = track.getBoundingClientRect();
+                var centerX = rect.left + rect.width / 2;
+                var maxDist = rect.width / 2;
+                Array.prototype.forEach.call(track.children, function (item) {
+                    var r = item.getBoundingClientRect();
+                    var itemCenter = r.left + r.width / 2;
+                    var dist = Math.abs(itemCenter - centerX);
+                    var closeness = Math.max(0, 1 - dist / (maxDist * 0.85));
+                    var scale = 1 + closeness * 0.25;
+                    item.style.transform = 'scale(' + scale.toFixed(3) + ')';
+                    item.style.zIndex = Math.round(scale * 100);
+                });
+            }
+
+            function loopCheck() {
+                var setWidth = track.scrollWidth / setCount;
+                if (track.scrollLeft < setWidth * 0.5) {
+                    track.scrollLeft += setWidth;
+                } else if (track.scrollLeft > setWidth * 1.5) {
+                    track.scrollLeft -= setWidth;
+                }
+            }
+
+            requestAnimationFrame(function () {
+                track.scrollLeft = track.scrollWidth / setCount;
+                updateScale();
+            });
+
+            var loopTimer = null;
+            track.addEventListener('scroll', function () {
+                updateScale();
+                if (loopTimer) clearTimeout(loopTimer);
+                loopTimer = setTimeout(loopCheck, 80);
+            }, { passive: true });
+
+            track.addEventListener('wheel', function (e) {
+                e.preventDefault();
+                track.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
+            }, { passive: false });
+
+            window.addEventListener('resize', updateScale);
+        })();
+    </script>
+</body>
+
+</html>

@@ -126,9 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalInner.scrollTop = 0;
             
             // Set modal wrapper border color
-            if (index === 3) {
-                modalWrapper.style.background = 'red'; // Red for project 3
-            } else if (index === 4) {
+            if (index === 4) {
                 modalWrapper.style.background = 'var(--pure-black)'; // Black for project 4
             } else {
                 modalWrapper.style.background = ''; // Revert to CSS default
@@ -136,19 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Set Image
             modalImageContainer.innerHTML = ''; // Clear previous images
-            if (index === 3) {
-                const iframe = document.createElement('iframe');
-                iframe.src = 'Bioscope.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-                iframe.style.width = '100%';
-
-                modalImageContainer.style.height = '100%';
-                iframe.style.height = '100%';
-                iframe.style.border = 'none';
-                iframe.style.display = 'block';
-                iframe.style.borderBottomLeftRadius = '16px';
-                iframe.style.borderBottomRightRadius = '16px';
-                modalImageContainer.appendChild(iframe);
-            } else if (index === 4) {
+            if (index === 4) {
                 const img = document.createElement('img');
                 img.src = 'Comic jpeg.jpg';
                 img.alt = 'Comic Project Details';

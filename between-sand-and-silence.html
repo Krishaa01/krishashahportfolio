@@ -395,7 +395,7 @@
         <div class="cs-project-nav">
             <a href="vr-mohenjo-daro.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
             <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
-            <a href="shatter.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+            <a href="bioscope.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
         </div>
     </main>
 
@@ -414,13 +414,13 @@
 
     <script src="main.js"></script>
     <script>
-        // Let a vertical mouse-wheel scroll the storyboard strip sideways while hovering it
+        // Let a vertical mouse-wheel scroll the storyboard strip sideways while hovering it.
+        // Always redirect (rather than only when |deltaY| > |deltaX|) so this works
+        // consistently with every mouse/trackpad.
         document.querySelectorAll('#storyTrack').forEach(function (el) {
             el.addEventListener('wheel', function (e) {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    e.preventDefault();
-                    el.scrollLeft += e.deltaY;
-                }
+                e.preventDefault();
+                el.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
             }, { passive: false });
         });
     </script>
