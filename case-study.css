@@ -827,6 +827,9 @@
   border-radius: 14px;
   background: white;
   padding: 20px 22px;
+  height: 230px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .cs-story-num {

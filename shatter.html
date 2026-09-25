@@ -264,14 +264,7 @@
         <section class="cs-section">
             <div class="cs-section-label">Look</div>
             <h2 class="cs-section-title">Scene Screenshots</h2>
-            <div class="cs-gallery-scroll">
-                <img src="ss 1 shatter.jpeg" alt="Shatter scene 1">
-                <img src="ss 2 shatter.jpeg" alt="Shatter scene 2">
-                <img src="ss 3 shatter.jpeg" alt="Shatter scene 3">
-                <img src="ss 4 shatter.jpeg" alt="Shatter scene 4">
-                <img src="ss 5 shatter.jpeg" alt="Shatter scene 5">
-                <img src="ss 6 shatter.jpeg" alt="Shatter scene 6">
-            </div>
+            <div class="cs-glimpse-track" id="screenshotTrack"></div>
         </section>
 
         <!-- Characters -->
@@ -328,15 +321,74 @@
 
     <script src="main.js"></script>
     <script>
-        // Let a vertical mouse-wheel scroll the screenshot strip sideways while hovering it.
-        // Always redirect (rather than only when |deltaY| > |deltaX|) so this works
-        // consistently with every mouse/trackpad, not just ones that send a "diagonal" delta.
-        document.querySelectorAll('.cs-gallery-scroll').forEach(function (el) {
-            el.addEventListener('wheel', function (e) {
+        // Scene Screenshots — same infinite coverflow carousel as VR Mohenjo Daro's
+        // Development Glimpses
+        (function () {
+            var track = document.getElementById('screenshotTrack');
+            if (!track) return;
+
+            var files = [
+                'ss 1 shatter.jpeg', 'ss 2 shatter.jpeg', 'ss 3 shatter.jpeg',
+                'ss 4 shatter.jpeg', 'ss 5 shatter.jpeg', 'ss 6 shatter.jpeg'
+            ];
+            var setCount = 3; // triplicate so we can loop seamlessly in both directions
+
+            for (var s = 0; s < setCount; s++) {
+                files.forEach(function (file) {
+                    var item = document.createElement('div');
+                    item.className = 'cs-glimpse-item';
+                    var img = document.createElement('img');
+                    img.src = file;
+                    img.alt = file.replace('.jpeg', '');
+                    img.draggable = false;
+                    item.appendChild(img);
+                    track.appendChild(item);
+                });
+            }
+
+            function updateScale() {
+                var rect = track.getBoundingClientRect();
+                var centerX = rect.left + rect.width / 2;
+                var maxDist = rect.width / 2;
+                Array.prototype.forEach.call(track.children, function (item) {
+                    var r = item.getBoundingClientRect();
+                    var itemCenter = r.left + r.width / 2;
+                    var dist = Math.abs(itemCenter - centerX);
+                    var closeness = Math.max(0, 1 - dist / (maxDist * 0.85));
+                    var scale = 1 + closeness * 0.25;
+                    item.style.transform = 'scale(' + scale.toFixed(3) + ')';
+                    item.style.zIndex = Math.round(scale * 100);
+                });
+            }
+
+            function loopCheck() {
+                var setWidth = track.scrollWidth / setCount;
+                if (track.scrollLeft < setWidth * 0.5) {
+                    track.scrollLeft += setWidth;
+                } else if (track.scrollLeft > setWidth * 1.5) {
+                    track.scrollLeft -= setWidth;
+                }
+            }
+
+            requestAnimationFrame(function () {
+                track.scrollLeft = track.scrollWidth / setCount;
+                updateScale();
+            });
+
+            var loopTimer = null;
+            track.addEventListener('scroll', function () {
+                updateScale();
+                if (loopTimer) clearTimeout(loopTimer);
+                loopTimer = setTimeout(loopCheck, 80);
+            }, { passive: true });
+
+            track.addEventListener('wheel', function (e) {
                 e.preventDefault();
-                el.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
+                track.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
             }, { passive: false });
-        });
+
+            window.addEventListener('resize', updateScale);
+        })();
 
         // Game Characters — horizontal scroll on hover + seamless infinite loop
         (function () {

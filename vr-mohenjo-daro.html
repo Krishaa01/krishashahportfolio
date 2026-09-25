@@ -7,6 +7,85 @@
     <title>VR Mohenjo Daro | Krisha Shah</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* VR Mohenjo Daro-only overrides. Kept local to this page so the
+           other case study pages are unaffected. */
+
+        /* the excavation-brick brown, used only on this project's meta bar
+           and design process roadmap */
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5 {
+            background: linear-gradient(135deg, #8a5a35, #5c3a1f);
+        }
+
+        .cs-pipeline-step:nth-child(1),
+        .cs-pipeline-step:nth-child(2),
+        .cs-pipeline-step:nth-child(3),
+        .cs-pipeline-step:nth-child(4) {
+            background: linear-gradient(135deg, #8a5a35, #5c3a1f);
+        }
+
+        /* full-bleed "patch" layout for Overview / Concept, same as Shatter */
+        .cs-split {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .cs-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .cs-split-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+        }
+
+        .cs-split-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        /* User Experience Flow — same full-bleed patch treatment, image/text
+           placement stays exactly as it was */
+        .cs-flow-item {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            border-radius: 0;
+            background: white;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        @media (max-width: 900px) {
+            .cs-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cs-split-title {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -90,27 +169,46 @@
 
         <!-- Overview -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">Project Overview</div>
-            <h2 class="cs-section-title cs-center">Uncovering a lost city, one brick at a time</h2>
-            <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                    A multisensory VR experience that takes the user through the process of uncovering Mohenjo-daro. The
-                    experience starts with the user working as a labourer, breaking bricks and collecting artifacts,
-                    before shifting into the role of an archaeologist examining the discoveries. The experience uses VR
-                    and physical interaction to explore different theories about what happened to the ancient city.
-                </p>
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Project Overview</div>
+                        <h2 class="cs-split-title">Uncovering a lost city, one brick at a time</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            A multisensory VR experience that takes the user through the process of uncovering
+                            Mohenjo-daro. The experience starts with the user working as a labourer, breaking bricks and
+                            collecting artifacts, before shifting into the role of an archaeologist examining the
+                            discoveries. The experience uses VR and physical interaction to explore different theories
+                            about what happened to the ancient city.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Concept -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">The Concept</div>
-            <h2 class="cs-section-title cs-center">Why this story</h2>
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">The Concept</div>
+                        <h2 class="cs-split-title">Why this story</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            Colonial railway builders stripped bricks from Mohenjo-daro's ancient ruins to lay the 1870
+                            Lahore-Karachi line — a stark example of how careless development destroys irreplaceable
+                            archaeology.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section">
             <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                    Colonial railway builders stripped bricks from Mohenjo-daro's ancient ruins to lay the 1870
-                    Lahore-Karachi line — a stark example of how careless development destroys irreplaceable archaeology.
-                </p>
                 <p class="cs-text-box">
                     This "brick theft" story bridges ancient civilization and colonial history, making a powerful,
                     emotional lesson in why heritage preservation matters.

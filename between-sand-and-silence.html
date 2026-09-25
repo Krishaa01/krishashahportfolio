@@ -7,6 +7,96 @@
     <title>Between Sand and Silence | Krisha Shah</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Between Sand and Silence-only overrides. Kept local to this page
+           so the other case study pages are unaffected. */
+
+        /* proof-of-concept notice — light blue instead of orange */
+        .cs-notice {
+            border-color: var(--secondary);
+            background: #eaf3ff;
+            color: var(--secondary);
+        }
+
+        /* solid golden ochre for the meta bar and the roadmap — white text
+           (already set by the shared stylesheet) stays readable on it */
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5 {
+            background: #b8860b;
+        }
+
+        .cs-pipeline-step:nth-child(1),
+        .cs-pipeline-step:nth-child(2),
+        .cs-pipeline-step:nth-child(3) {
+            background: #b8860b;
+        }
+
+        /* Player Journey uses the same gold as the meta bar */
+        /* (covered by the .cs-pipeline-step rule above — Player Journey is
+           the only cs-pipeline on this page) */
+
+        /* Sensorial Mapping — solid brown for all three cards */
+        .cs-sensorial-card:nth-child(1),
+        .cs-sensorial-card:nth-child(2),
+        .cs-sensorial-card:nth-child(3) {
+            background: #5c3a1f;
+        }
+
+        .cs-sensorial-card:nth-child(1) .cs-sensorial-moment,
+        .cs-sensorial-card:nth-child(2) .cs-sensorial-moment,
+        .cs-sensorial-card:nth-child(3) .cs-sensorial-moment,
+        .cs-sensorial-card:nth-child(1) .cs-sensorial-detail,
+        .cs-sensorial-card:nth-child(2) .cs-sensorial-detail,
+        .cs-sensorial-card:nth-child(3) .cs-sensorial-detail {
+            color: white;
+        }
+
+        /* full-bleed "patch" layout for Overview / Concept, same as Shatter and VR */
+        .cs-split {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .cs-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: center;
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .cs-split-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+        }
+
+        .cs-split-body p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        @media (max-width: 900px) {
+            .cs-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cs-split-title {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -73,29 +163,47 @@
 
         <!-- Overview -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">Project Overview</div>
-            <h2 class="cs-section-title cs-center">A journey never finished, walked once more</h2>
-            <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                    A multisensory VR experience inspired by a haunting detail from John Marshall's excavation records
-                    — a skeleton found beside a broken pot in Mohenjo-daro. The player lives through the final moments
-                    of the city's last inhabitant, then returns as a silent witness. In the final act, they retrace the
-                    exact footsteps and position of that last person, completing the journey that was never finished.
-                </p>
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">Project Overview</div>
+                        <h2 class="cs-split-title">A journey never finished, walked once more</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            A multisensory VR experience inspired by a haunting detail from John Marshall's excavation
+                            records — a skeleton found beside a broken pot in Mohenjo-daro. The player lives through
+                            the final moments of the city's last inhabitant, then returns as a silent witness. In the
+                            final act, they retrace the exact footsteps and position of that last person, completing
+                            the journey that was never finished.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Concept -->
         <section class="cs-section">
-            <div class="cs-section-label" style="text-align:center;">The Concept</div>
-            <h2 class="cs-section-title cs-center">A city dismantled a second time</h2>
+            <div class="cs-split">
+                <div class="cs-split-inner">
+                    <div class="cs-split-head">
+                        <div class="cs-section-label">The Concept</div>
+                        <h2 class="cs-split-title">A city dismantled a second time</h2>
+                    </div>
+                    <div class="cs-split-body">
+                        <p>
+                            There is a specific historical fact that stayed with us. When British-era construction
+                            workers were laying railway tracks through the Indus Valley in the 1850s, they found an
+                            unusual abundance of ready-made bricks in the ground — fired, uniform, ancient. They used
+                            them as ballast for the tracks. Those bricks were Harappa Civilization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section">
             <div class="cs-text-boxes">
-                <p class="cs-text-box">
-                    There is a specific historical fact that stayed with us. When British-era construction workers were
-                    laying railway tracks through the Indus Valley in the 1850s, they found an unusual abundance of
-                    ready-made bricks in the ground — fired, uniform, ancient. They used them as ballast for the
-                    tracks. Those bricks were Harappa Civilization.
-                </p>
                 <p class="cs-text-box">
                     An entire layer of a 4000 year old civilization was pulled out of the earth, loaded onto trolleys,
                     and used for railway construction. The workers carried it without knowing what they were carrying.
