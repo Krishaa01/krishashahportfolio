@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalImageContainer.appendChild(video);
 
                 const exhibitionImage = document.createElement('img');
-                exhibitionImage.src = 'holo exhi.png';
+                exhibitionImage.src = 'holo exhi.jpg';
                 exhibitionImage.alt = 'Hologram exhibition';
                 exhibitionImage.style.width = '100%';
                 exhibitionImage.style.height = 'auto';
@@ -234,6 +234,44 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeModal();
             if (e.key === 'ArrowLeft') modalPrevBtn.click();
             if (e.key === 'ArrowRight') modalNextBtn.click();
+        });
+    }
+});
+
+// Lazy-load heavy videos: only fetch/play a video once it's actually near the
+// viewport, instead of every <video> on the page trying to download and
+// autoplay the instant the page loads (this was the main cause of pages
+// feeling heavy / hanging on load, especially with multi-MB clips).
+document.addEventListener('DOMContentLoaded', () => {
+    var lazyVideos = document.querySelectorAll('video[data-src]');
+    if (!lazyVideos.length) return;
+
+    function loadVideo(video) {
+        if (video.src) return; // already loaded
+        var src = video.getAttribute('data-src');
+        if (!src) return;
+        video.src = src;
+        video.removeAttribute('data-src');
+        var playPromise = video.play();
+        if (playPromise && playPromise.catch) playPromise.catch(function () { /* autoplay blocked, ignore */ });
+    }
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    loadVideo(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '400px 0px' }); // start fetching a bit before it scrolls into view
+
+        lazyVideos.forEach(function (video) { observer.observe(video); });
+    } else {
+        // No IntersectionObserver support: just load everything after the
+        // rest of the page has finished loading instead of racing it.
+        window.addEventListener('load', function () {
+            lazyVideos.forEach(loadVideo);
         });
     }
 });

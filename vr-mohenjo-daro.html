@@ -117,7 +117,7 @@
                 <p class="cs-hero-tagline">A multisensory VR journey through the excavation of Mohenjo-daro — where careless development met careful discovery.</p>
             </div>
             <div class="cs-hero-media">
-                <img src="VR COVER.png" alt="VR Mohenjo Daro cover art">
+                <img src="VR COVER.jpg" alt="VR Mohenjo Daro cover art">
             </div>
         </section>
 
@@ -154,7 +154,7 @@
             <div class="cs-section-label">Watch</div>
             <h2 class="cs-section-title">Trailer</h2>
             <div class="cs-video-frame">
-                <video src="VR VIDEO.mp4" autoplay muted loop playsinline></video>
+                <video data-src="VR VIDEO.mp4" muted loop playsinline preload="none"></video>
             </div>
         </section>
 
@@ -260,7 +260,7 @@
             <h2 class="cs-section-title">User Experience Flow</h2>
             <div class="cs-flow-list">
                 <div class="cs-flow-item">
-                    <div class="cs-flow-media"><img src="vr ux 1.png" alt="Scene 1: The Worksite"></div>
+                    <div class="cs-flow-media"><img loading="lazy" src="vr ux 1.jpg" alt="Scene 1: The Worksite"></div>
                     <div class="cs-flow-text">
                         <div class="cs-flow-num">Scene 01</div>
                         <div class="cs-flow-title">The Worksite</div>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
                 <div class="cs-flow-item cs-flow-reverse">
-                    <div class="cs-flow-media"><img src="vr ux 2.png" alt="Scene 2: First Discoveries"></div>
+                    <div class="cs-flow-media"><img loading="lazy" src="vr ux 2.jpg" alt="Scene 2: First Discoveries"></div>
                     <div class="cs-flow-text">
                         <div class="cs-flow-num">Scene 02</div>
                         <div class="cs-flow-title">First Discoveries</div>
@@ -279,7 +279,7 @@
                     </div>
                 </div>
                 <div class="cs-flow-item">
-                    <div class="cs-flow-media"><img src="vr ux 3.png" alt="Scene 3: The Table"></div>
+                    <div class="cs-flow-media"><img loading="lazy" src="vr ux 3.jpg" alt="Scene 3: The Table"></div>
                     <div class="cs-flow-text">
                         <div class="cs-flow-num">Scene 03</div>
                         <div class="cs-flow-title">The Table</div>
@@ -290,7 +290,7 @@
                     </div>
                 </div>
                 <div class="cs-flow-item cs-flow-reverse">
-                    <div class="cs-flow-media"><img src="vr ux 4.png" alt="Scene 4: Modern Mohenjo-daro"></div>
+                    <div class="cs-flow-media"><img loading="lazy" src="vr ux 4.jpg" alt="Scene 4: Modern Mohenjo-daro"></div>
                     <div class="cs-flow-text">
                         <div class="cs-flow-num">Scene 04</div>
                         <div class="cs-flow-title">Modern Mohenjo-daro</div>
@@ -337,8 +337,8 @@
             if (!track) return;
 
             var files = [
-                'vr glimps 1.png', 'vr glimps 2.png', 'vr glimps 3.png', 'vr glimps 4.png',
-                'vr glimps 5.png', 'vr glimps 6.png', 'vr glimps 7.png'
+                'vr glimps 1.jpg', 'vr glimps 2.png', 'vr glimps 3.png', 'vr glimps 4.jpg',
+                'vr glimps 5.png', 'vr glimps 6.jpg', 'vr glimps 7.jpg'
             ];
             var setCount = 3; // triplicate so we can loop seamlessly in both directions
 
@@ -348,6 +348,7 @@
                     item.className = 'cs-glimpse-item';
                     var img = document.createElement('img');
                     img.src = file;
+                    img.loading = 'lazy';
                     img.alt = file.replace('.png', '');
                     img.draggable = false;
                     item.appendChild(img);

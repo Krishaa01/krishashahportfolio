@@ -304,7 +304,7 @@
             <div class="cs-section-label">Watch</div>
             <h2 class="cs-section-title">Chai na Milegi Dubara</h2>
             <div class="cs-video-frame">
-                <video src="chai na milegi dubara.mp4" autoplay controls playsinline></video>
+                <video data-src="chai na milegi dubara.mp4" controls playsinline preload="none"></video>
             </div>
             <p class="cs-video-caption">If sound doesn't start automatically, your browser has likely blocked
                 autoplay-with-audio — press play above.</p>
@@ -348,7 +348,7 @@
             if (!track) return;
 
             var files = [
-                'bio -1.jpg', 'bio -2.jpg', 'Bioscope.png', 'bio 0.1.jpg', 'bio 2.jpg',
+                'bio -1.jpg', 'bio -2.jpg', 'Bioscope.jpg', 'bio 0.1.jpg', 'bio 2.jpg',
                 'bio 1.jpeg', 'bio 6.jpeg', 'bio 0.jpg', 'bio 4.jpg', 'bio 3.jpg', 'bio 7.mp4'
             ];
             var setCount = 3; // triplicate so we can loop seamlessly in both directions
@@ -359,13 +359,19 @@
                     item.className = 'cs-glimpse-item';
                     var isVideo = /\.mp4$/i.test(file);
                     var media = document.createElement(isVideo ? 'video' : 'img');
-                    media.src = file;
                     if (isVideo) {
-                        media.autoplay = true;
+                        // Lazy-load: the same clip appears 3x (triplicated for the
+                        // infinite-loop illusion) — loading/decoding it 3x at once
+                        // on page load is what made this page hang. Only fetch it
+                        // once it actually scrolls near the viewport.
+                        media.dataset.src = file;
                         media.muted = true;
                         media.loop = true;
                         media.playsInline = true;
+                        media.preload = 'none';
                     } else {
+                        media.src = file;
+                        media.loading = 'lazy';
                         media.alt = file.replace(/\.(jpg|jpeg|png)$/i, '');
                         media.draggable = false;
                     }
