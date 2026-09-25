@@ -45,7 +45,7 @@
   --base-unit: 8px;
   --grid-dot-size: 2px;
   --grid-gap: 32px;
-  --margin-container: 40px;
+  --margin-container: clamp(24px, 4vw, 64px);
   --gutter: 24px;
 
   /* Radii */
@@ -118,7 +118,7 @@ body {
 
 /* Layout */
 .container {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 0 var(--margin-container);
 }
