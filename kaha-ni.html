@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaha-ni | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Kaha-ni-only overrides. Kept local to this page so the other case
+           study pages are unaffected. */
+
+        .cs-hero-media {
+            aspect-ratio: 4/3;
+        }
+
+        /* "Patch" — the full-bleed bordered white card used for every
+           section on this page, same technique as the Overview split on
+           other project pages. */
+        .kn-patch {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .kn-patch-inner {
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .kn-title {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 10px 0 20px;
+            max-width: 780px;
+        }
+
+        .kn-body {
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 780px;
+            color: var(--on-background);
+        }
+
+        .kn-body+.kn-body {
+            margin-top: 18px;
+        }
+
+        .kn-lede {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.6;
+            max-width: 780px;
+            margin-top: 10px;
+        }
+
+        .kn-subhead {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--secondary);
+            margin: 28px 0 8px;
+        }
+
+        .kn-subhead:first-of-type {
+            margin-top: 10px;
+        }
+
+        /* Memory Board — text left, photo right */
+        .kn-split-inner {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .kn-split-media {
+            border: 3px solid var(--pure-black);
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .kn-split-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Why / Where two-up */
+        .kn-two-up {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        /* Watch — click-to-load video, same lazy pattern used site-wide */
+        .kn-video-frame {
+            border: 4px solid var(--pure-black);
+            border-radius: 16px;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+            background: #1a1a1a;
+            cursor: pointer;
+        }
+
+        .kn-video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .kn-video-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2b2b2b, #0d0d0d);
+        }
+
+        .kn-video-play-btn {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: var(--pure-black);
+            transition: transform 0.2s ease;
+        }
+
+        .kn-video-frame:hover .kn-video-play-btn {
+            transform: scale(1.08);
+        }
+
+        .kn-video-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--outline);
+            text-align: center;
+        }
+
+        /* Tags */
+        .kn-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .kn-tags span {
+            border: 2px solid var(--pure-black);
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+
+            .kn-split-inner,
+            .kn-two-up {
+                grid-template-columns: 1fr;
+            }
+
+            .kn-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="works.html" class="active">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="works.html" class="cs-back">← Back to All Works</a>
+
+        <!-- Hero -->
+        <section class="cs-hero">
+            <div class="cs-hero-text">
+                <span class="cs-tag">Interactive Installation</span>
+                <h1 class="headline-xl">KAHA-NI</h1>
+                <p class="cs-hero-tagline">An installation that turns everyday objects into short stories.</p>
+            </div>
+            <div class="cs-hero-media">
+                <img src="dsl1.jpg" alt="Visitors interacting with the Kaha-ni installation">
+            </div>
+        </section>
+
+        <!-- Meta -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item cs-meta-c1">
+                <div class="cs-meta-label">Project Type</div>
+                <div class="cs-meta-value">Interactive Installation</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c2">
+                <div class="cs-meta-label">Role</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-featured">
+                <div class="cs-meta-label">Duration</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c3">
+                <div class="cs-meta-label">Team</div>
+                <div class="cs-meta-value">Krisha Shah, Mohammed Sheikh, Paras Chanana, Vaibhav Deshmukh</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c4">
+                <div class="cs-meta-label">Tools</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+        </div>
+
+        <!-- Concept -->
+        <section class="cs-section">
+            <div class="kn-patch">
+                <div class="kn-patch-inner">
+                    <div class="cs-section-label">Concept</div>
+                    <p class="kn-lede">KAHA-NI is a machine that looks at an object and prints a short generated
+                        story about it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="cs-section">
+            <div class="kn-patch">
+                <div class="kn-patch-inner">
+                    <div class="cs-section-label">How It Works</div>
+                    <h2 class="kn-title">Hold it up. Press the button. It prints a story.</h2>
+                    <p class="kn-body">
+                        Hold something up to the camera. Press the button. The machine sees the object, searches
+                        what the internet currently associates with it, and drifts that sideways away from what
+                        the thing is, toward what it might mean. The machine then prints a short story about the
+                        object in about thirty seconds.
+                    </p>
+                    <p class="kn-body">
+                        Then the machine forgets. The object, the story, the moment; nothing is stored. The
+                        machine has no memory. The slip does.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Memory Board -->
+        <section class="cs-section">
+            <div class="kn-patch">
+                <div class="kn-patch-inner">
+                    <div class="cs-section-label">The Memory Board</div>
+                    <div class="kn-split-inner" style="margin-top: 10px;">
+                        <div>
+                            <h2 class="kn-title" style="margin-top: 0;">Paper accumulating by hand, nothing else
+                            </h2>
+                            <p class="kn-body">
+                                Pin your slip to the board on the wall. The board is the only memory this
+                                installation has, no database, no cloud, just paper accumulating by hand across
+                                the exhibition. Putting it up on the board is not a compulsion, it's a choice
+                                given to the user; take the memory with you or pin it on the board.
+                            </p>
+                            <p class="kn-body">
+                                Every slip was made once and won't be made again. The same object photographed on
+                                a different day produces a different story, because the machine reads what the
+                                internet is saying at that exact moment. Nothing repeats. The board is the record.
+                            </p>
+                        </div>
+                        <div class="kn-split-media">
+                            <img src="memory dsl.jpg" alt="The Kaha-ni memory board, pinned with printed story slips">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Installation -->
+        <section class="cs-section">
+            <div class="kn-patch">
+                <div class="kn-patch-inner">
+                    <div class="cs-section-label">The Installation</div>
+                    <div class="kn-two-up">
+                        <div>
+                            <div class="kn-subhead">Why</div>
+                            <p class="kn-body">
+                                Most things we carry are worn, cracked, bent, or half-broken, and we don't fix
+                                them. A toothbrush with flat bristles that still works. A charger tangled since
+                                the last move. A key that opens nothing anymore. KAHA-NI finds the story in
+                                exactly what's worn about an object because that's usually the most honest thing
+                                about it.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="kn-subhead">Where</div>
+                            <p class="kn-body">
+                                The installation is being planned to be put up at an art cafe/workshop where
+                                people already bring things they've made or make things there itself. Visitors
+                                bring their objects the same way. The machine reads it, and generates a story
+                                based on their object. The flow will definitely be the same, but this gives it a
+                                more impactful, personal feeling for the user because the object would be
+                                something they have just made in the cafe/workshop, and the story would be based
+                                on their object.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watch -->
+        <section class="cs-section">
+            <div class="cs-section-label">Watch</div>
+            <h2 class="cs-section-title">Kaha-ni in Action</h2>
+            <div class="kn-video-frame" id="knVideoFrame">
+                <div class="kn-video-play" id="knVideoPlay">
+                    <div class="kn-video-play-btn">▶</div>
+                </div>
+            </div>
+            <div class="kn-video-note">Playing loads the video from YouTube. Nothing is loaded from them until you
+                press play.</div>
+        </section>
+
+        <!-- Tags -->
+        <section class="cs-section">
+            <div class="cs-section-label">Tags</div>
+            <div class="kn-tags">
+                <span>algorithm based</span>
+                <span>generative story</span>
+                <span>human-ai interaction</span>
+                <span>interactive installation</span>
+                <span>memory board</span>
+                <span>one time story generator</span>
+                <span>participatory</span>
+                <span>tangible interaction</span>
+            </div>
+        </section>
+
+        <!-- Glimpses -->
+        <section class="cs-section">
+            <div class="cs-section-label">Look</div>
+            <h2 class="cs-section-title">Glimpses from the Exhibition</h2>
+            <div class="cs-glimpse-track" id="glimpseTrack"></div>
+        </section>
+
+        <!-- Project navigation -->
+        <div class="cs-project-nav">
+            <a href="digital-fatigue.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
+            <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
+            <a href="raksh.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Click-to-load YouTube embed — same idea used on the source project
+        // page: nothing is fetched from YouTube until the visitor presses play.
+        (function () {
+            var frame = document.getElementById('knVideoFrame');
+            var playBtn = document.getElementById('knVideoPlay');
+            if (!frame || !playBtn) return;
+            playBtn.addEventListener('click', function () {
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://www.youtube-nocookie.com/embed/awF0NGLoPfI?rel=0&autoplay=1';
+                iframe.title = 'Kaha-ni';
+                iframe.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+                iframe.allowFullscreen = true;
+                frame.innerHTML = '';
+                frame.appendChild(iframe);
+            });
+        })();
+
+        // Glimpses — infinite coverflow carousel, same as the other case
+        // study pages: hovering and scrolling vertically also scrolls the
+        // track horizontally.
+        (function () {
+            var track = document.getElementById('glimpseTrack');
+            if (!track) return;
+
+            var files = [
+                'dsl1.jpg', 'dsl2.jpg', 'dsl3.jpg', 'dsl5.jpg',
+                'dsl6.jpg', 'dsl7.jpg', 'dsl8.jpg', 'dsl10.jpg'
+            ];
+            var setCount = 3; // triplicate so we can loop seamlessly in both directions
+
+            for (var s = 0; s < setCount; s++) {
+                files.forEach(function (file) {
+                    var item = document.createElement('div');
+                    item.className = 'cs-glimpse-item';
+                    var img = document.createElement('img');
+                    img.src = file;
+                    img.loading = 'lazy';
+                    img.alt = file.replace('.jpg', '');
+                    img.draggable = false;
+                    item.appendChild(img);
+                    track.appendChild(item);
+                });
+            }
+
+            function updateScale() {
+                var rect = track.getBoundingClientRect();
+                var centerX = rect.left + rect.width / 2;
+                var maxDist = rect.width / 2;
+                Array.prototype.forEach.call(track.children, function (item) {
+                    var r = item.getBoundingClientRect();
+                    var itemCenter = r.left + r.width / 2;
+                    var dist = Math.abs(itemCenter - centerX);
+                    var closeness = Math.max(0, 1 - dist / (maxDist * 0.85));
+                    var scale = 1 + closeness * 0.25;
+                    item.style.transform = 'scale(' + scale.toFixed(3) + ')';
+                    item.style.zIndex = Math.round(scale * 100);
+                });
+            }
+
+            function loopCheck() {
+                var setWidth = track.scrollWidth / setCount;
+                if (track.scrollLeft < setWidth * 0.5) {
+                    track.scrollLeft += setWidth;
+                } else if (track.scrollLeft > setWidth * 1.5) {
+                    track.scrollLeft -= setWidth;
+                }
+            }
+
+            requestAnimationFrame(function () {
+                track.scrollLeft = track.scrollWidth / setCount;
+                updateScale();
+            });
+
+            var loopTimer = null;
+            track.addEventListener('scroll', function () {
+                updateScale();
+                if (loopTimer) clearTimeout(loopTimer);
+                loopTimer = setTimeout(loopCheck, 80);
+            }, { passive: true });
+
+            track.addEventListener('wheel', function (e) {
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                    e.preventDefault();
+                    track.scrollLeft += e.deltaY;
+                }
+            }, { passive: false });
+
+            window.addEventListener('resize', updateScale);
+        })();
+    </script>
+</body>
+
+</html>

@@ -38,9 +38,21 @@
 
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             margin-bottom: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .work-card {
@@ -161,6 +173,45 @@
                 </div>
                 <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">BORROWED TIME</h4>
                 <span class="tag label-bold">COMIC BOOK</span>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="work-card" data-href="digital-fatigue.html">
+                <div class="project-card rotate-slight">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img loading="lazy" src="insta 4.png" alt="Digital Fatigue via Instagram Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">DIGITAL FATIGUE VIA INSTAGRAM</h4>
+                <span class="tag label-bold">UX RESEARCH</span>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="work-card" data-href="kaha-ni.html">
+                <div class="project-card rotate-slight-right">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img loading="lazy" src="dsl1.jpg" alt="Kaha-ni Cover"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">KAHA-NI</h4>
+                <span class="tag label-bold">INTERACTIVE INSTALLATION</span>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="work-card" data-href="raksh.html">
+                <div class="project-card rotate-slight">
+                    <div class="stamp-border"
+                        style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img loading="lazy" src="about isro.png" alt="Raksh Cover"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+                <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">RAKSH</h4>
+                <span class="tag label-bold">PRODUCT DESIGN</span>
             </div>
 
         </div>

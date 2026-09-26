@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksh | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Raksh-only overrides. Kept local to this page so the other case
+           study pages are unaffected. */
+
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5,
+        .cs-meta-featured {
+            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+        }
+
+        .cs-meta-featured .cs-meta-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cs-hero-media {
+            aspect-ratio: 3/4;
+        }
+
+        .cs-hero-media img {
+            object-fit: contain;
+            padding: 20px;
+        }
+
+        /* "Patch" — the full-bleed bordered white card used for every
+           section on this page, same technique as the other project pages. */
+        .rk-patch {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .rk-patch-inner {
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .rk-title {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 6px 0 16px;
+            max-width: 780px;
+        }
+
+        .rk-body {
+            font-size: 16.5px;
+            line-height: 1.8;
+            color: var(--on-background);
+        }
+
+        .rk-body+.rk-body {
+            margin-top: 16px;
+        }
+
+        .rk-lede {
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-top: 10px;
+        }
+
+        .rk-subhead {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #e8541c;
+            margin: 22px 0 8px;
+        }
+
+        .rk-subhead:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Design Process / Project Timeline — pill boxes that enlarge on hover */
+        .rk-step-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .rk-step-grid.rk-step-6 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .rk-step {
+            border-radius: 20px;
+            padding: 22px 16px;
+            text-align: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: default;
+        }
+
+        .rk-step:hover {
+            transform: scale(1.1);
+            box-shadow: 0 14px 26px rgba(17, 17, 17, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .rk-step-orange {
+            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+        }
+
+        .rk-step-violet {
+            background: linear-gradient(135deg, #6a4fd6, #2f2470);
+        }
+
+        /* Limitations — same orange box treatment, longer text */
+        .rk-limit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .rk-limit-box {
+            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+            color: white;
+            border-radius: 18px;
+            padding: 26px 22px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: default;
+        }
+
+        .rk-limit-box:hover {
+            transform: scale(1.06);
+            box-shadow: 0 14px 26px rgba(17, 17, 17, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .rk-limit-num {
+            font-size: 13px;
+            font-weight: 800;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .rk-limit-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Experiments */
+        .rk-exp-patch+.rk-exp-patch {
+            border-top: 2px solid var(--surface-variant);
+            margin-top: 40px;
+            padding-top: 40px;
+        }
+
+        .rk-exp-top {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 44px;
+        }
+
+        .rk-exp-tag {
+            display: inline-block;
+            background: var(--pure-black);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        .rk-exp-image {
+            border: 2px solid var(--pure-black);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #f4f1ee;
+            margin-top: 14px;
+        }
+
+        .rk-exp-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .rk-exp-image.rk-img-small {
+            max-width: 260px;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .rk-exp-full {
+            margin-top: 28px;
+        }
+
+        .rk-wear-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .rk-wear-row .rk-exp-image {
+            flex: 1 1 0;
+            max-width: 180px;
+            margin-top: 0;
+            aspect-ratio: 1/1;
+        }
+
+        /* Inspiration */
+        .rk-insp-top {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 44px;
+            align-items: center;
+        }
+
+        .rk-insp-media {
+            border: 3px solid var(--pure-black);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #f4f1ee;
+        }
+
+        .rk-insp-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .rk-insp-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .rk-insp-row .rk-insp-item {
+            flex: 1 1 0;
+            border: 2px solid var(--pure-black);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f4f1ee;
+            max-width: 260px;
+        }
+
+        .rk-insp-row img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Prototype */
+        .rk-proto-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .rk-proto-row .rk-exp-image {
+            flex: 1 1 0;
+            margin-top: 0;
+            aspect-ratio: 4/3;
+        }
+
+        @media (max-width: 900px) {
+
+            .rk-step-grid,
+            .rk-step-grid.rk-step-6,
+            .rk-limit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .rk-exp-top,
+            .rk-insp-top {
+                grid-template-columns: 1fr;
+            }
+
+            .rk-proto-row,
+            .rk-wear-row {
+                flex-direction: column;
+            }
+
+            .rk-wear-row .rk-exp-image {
+                max-width: 100%;
+            }
+
+            .rk-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="works.html" class="active">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="works.html" class="cs-back">← Back to All Works</a>
+
+        <!-- Hero -->
+        <section class="cs-hero">
+            <div class="cs-hero-text">
+                <span class="cs-tag">Product Design · Space Tech</span>
+                <h1 class="headline-xl">RAKSH</h1>
+                <p class="cs-hero-tagline">A callback to protection and care — two things astronauts absolutely
+                    require in anti-gravity.</p>
+            </div>
+            <div class="cs-hero-media">
+                <img src="about isro.png" alt="Gaganyaan crew module">
+            </div>
+        </section>
+
+        <!-- Meta -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item cs-meta-c1">
+                <div class="cs-meta-label">Project Type</div>
+                <div class="cs-meta-value">Product Design · Wearable Tech</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c2">
+                <div class="cs-meta-label">Role</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-featured">
+                <div class="cs-meta-label">Duration</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c3">
+                <div class="cs-meta-label">Team</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c4">
+                <div class="cs-meta-label">Tools</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+        </div>
+
+        <!-- About Project -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">About Project</div>
+                    <p class="rk-lede">
+                        Raksh is a redesigned space diaper for urine management during ISRO's Gaganyaan mission,
+                        built through iterative ergonomic and material research to offer astronauts a
+                        mess-free, comfortable way to handle hygiene in microgravity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Process -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Design Process</div>
+                    <div class="rk-step-grid">
+                        <div class="rk-step rk-step-orange">OPPORTUNITY</div>
+                        <div class="rk-step rk-step-orange">STRATEGY</div>
+                        <div class="rk-step rk-step-orange">DISCOVER</div>
+                        <div class="rk-step rk-step-orange">DEFINE</div>
+                        <div class="rk-step rk-step-orange">EMPATHIZE</div>
+                        <div class="rk-step rk-step-orange">SYNTHESIZE</div>
+                        <div class="rk-step rk-step-orange">DESIGN</div>
+                        <div class="rk-step rk-step-orange">DELIVER</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Timeline -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Project Timeline</div>
+                    <div class="rk-step-grid rk-step-6">
+                        <div class="rk-step rk-step-violet">Secondary Research</div>
+                        <div class="rk-step rk-step-violet">User Testing</div>
+                        <div class="rk-step rk-step-violet">Synthesis</div>
+                        <div class="rk-step rk-step-violet">Ideation</div>
+                        <div class="rk-step rk-step-violet">Prototyping</div>
+                        <div class="rk-step rk-step-violet">Testing</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Limitations of Current MAG Systems</div>
+                    <div class="rk-limit-grid">
+                        <div class="rk-limit-box">
+                            <div class="rk-limit-num">01</div>
+                            <p>MAGs only absorb waste — they do not actively remove or separate it, so
+                                astronauts remain in contact with urine until the suit is doffed.</p>
+                        </div>
+                        <div class="rk-limit-box">
+                            <div class="rk-limit-num">02</div>
+                            <p>Extended contact with absorbed waste can cause skin irritation, rashes, and
+                                increase risk of urinary tract infections or gastrointestinal distress.</p>
+                        </div>
+                        <div class="rk-limit-box">
+                            <div class="rk-limit-num">03</div>
+                            <p>Current MAGs do not fully contain odors, which can affect appetite and overall
+                                crew comfort in enclosed suit environments.</p>
+                        </div>
+                        <div class="rk-limit-box">
+                            <div class="rk-limit-num">04</div>
+                            <p>As disposable adult diapers, MAGs generate additional solid waste that must be
+                                stored and returned to Earth, complicating logistics on long missions.</p>
+                        </div>
+                        <div class="rk-limit-box">
+                            <div class="rk-limit-num">05</div>
+                            <p>Early attempts to design female-specific containment devices largely failed, and
+                                even current MAGs can be uncomfortable or ill-fitting across different body
+                                types.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Research -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">User Research</div>
+
+                    <!-- Experiment 1 -->
+                    <div class="rk-exp-patch">
+                        <span class="rk-exp-tag">Experiment 1</span>
+                        <div class="rk-exp-top">
+                            <div>
+                                <h2 class="rk-title">User Experience Study: Pull-Up Adult Diaper in
+                                    Astronaut-Like Lying Position</h2>
+                                <div class="rk-subhead">Test Setup</div>
+                                <p class="rk-body"><strong>Body Position:</strong> Lying on the back with knees
+                                    bent and feet elevated — mimicking the seated recline posture of astronauts
+                                    inside a spacecraft.</p>
+                            </div>
+                            <div>
+                                <div class="rk-subhead">Purpose</div>
+                                <p class="rk-body">Astronauts often rely on diapers during launch, long
+                                    missions, or spacewalks where bathroom access is impossible. This
+                                    experiment aimed to simulate the astronaut body position during launch and
+                                    evaluate the diaper's usability, comfort, and performance.</p>
+                                <div class="rk-exp-image">
+                                    <img src="exp 3 isro.png" alt="Testing the diaper mockup in a lying, astronaut-like posture">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rk-exp-full">
+                            <div class="rk-subhead">Wearing the Pull-Up Diaper and Urinating in the Diaper</div>
+                            <p class="rk-body">Testing the pull-up diaper in a lying, astronaut-like posture
+                                revealed it was hard to wear without lifting the hips, and liquid distributed
+                                unevenly once in use — pointing to a need for stretchable panels and better
+                                fluid dispersion, while confirming the wetness indicator was a valuable feature
+                                to keep.</p>
+                            <div class="rk-subhead">Removing and Disposing the Diaper</div>
+                            <div class="rk-wear-row">
+                                <div class="rk-exp-image">
+                                    <img src="exp 3 wear isro.png" alt="Removing and disposing the diaper — step 1">
+                                </div>
+                                <div class="rk-exp-image">
+                                    <img src="exp 3 wear isro 2.png" alt="Removing and disposing the diaper — step 2">
+                                </div>
+                                <div class="rk-exp-image">
+                                    <img src="exp 3 wear isro 3.png" alt="Removing and disposing the diaper — step 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment 2 -->
+                    <div class="rk-exp-patch">
+                        <span class="rk-exp-tag">Experiment 2</span>
+                        <div class="rk-exp-top">
+                            <div>
+                                <h2 class="rk-title">Testing an Adult Diaper: Capacity, Comfort & Leakage</h2>
+                            </div>
+                            <div>
+                                <p class="rk-body">Material testing (SAP-based diaper vs. liquid capacity,
+                                    leakage, and post-use comfort under a 1L high-flow pour) confirmed strong
+                                    absorption but revealed leakage under pressure and long dry-time — pointing
+                                    to the need for better fluid distribution in the final design.</p>
+                                <div class="rk-exp-image rk-img-small">
+                                    <img src="exp 2 isro.png" alt="Leakage and absorption test">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment 3 -->
+                    <div class="rk-exp-patch">
+                        <span class="rk-exp-tag">Experiment 3</span>
+                        <div class="rk-exp-top">
+                            <div>
+                                <h2 class="rk-title">Testing Absorption & Comfort: Diaper vs Sanitary Pads
+                                    Using Lemon Water (Acidic Test)</h2>
+                            </div>
+                            <div>
+                                <p class="rk-body">Comparing an adult diaper against sanitary pads under
+                                    acidic-liquid testing showed the diaper had the highest capacity and
+                                    reliability, while both pads struggled to hold pressure or distribute
+                                    liquid effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Concept — RAKSH</div>
+                    <h2 class="rk-title">Final Concept, Out of All the Concepts</h2>
+                    <p class="rk-body">
+                        Raksh is a two-part system: a reusable outer Trunk with a hydrophobic layer for
+                        double-leak protection, and a disposable inner Diaper with a hydrophobic top layer that
+                        channels moisture away from skin, a SAP core for absorption, a leak-proof base, and an
+                        integrated disposal pocket for easy, mess-free changes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inspiration -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Inspiration</div>
+                    <div class="rk-insp-top">
+                        <div>
+                            <h2 class="rk-title">Baby Carriers Meet Adult Diapers</h2>
+                            <p class="rk-body">
+                                Raksh draws on baby carriers for snug, ergonomic body support and adult diaper
+                                systems for leak-proof, body-conforming absorption — merging both into a
+                                compact, passive wearable solution for waste containment in microgravity.
+                            </p>
+                            <p class="rk-body">
+                                Inspiration of Trunk from: Transfer Pants Adaptive Shorts.<br>
+                                Inspiration of Waist Belt from: Expert Belts.
+                            </p>
+                        </div>
+                        <div class="rk-insp-media">
+                            <img src="inspiration isro main.png" alt="Space diaper concept sketches">
+                        </div>
+                    </div>
+                    <div class="rk-insp-row">
+                        <div class="rk-insp-item"><img src="inspiration isro 1.png" alt="Inspiration reference 1">
+                        </div>
+                        <div class="rk-insp-item"><img src="inspiration isro 2.png" alt="Inspiration reference 2">
+                        </div>
+                        <div class="rk-insp-item"><img src="inspiration isro 3.png" alt="Inspiration reference 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Research</div>
+                    <p class="rk-body">
+                        The diaper uses a four-layer material system — soft nonwoven top, SAP/SAF absorbent
+                        core with odor control, and a TPU leak-proof base — while the trunk pairs a microfiber
+                        inner layer with a hydrophobic, water-resistant outer shell for full containment.
+                    </p>
+                    <p class="rk-body">
+                        <strong>Inner layer</strong> — Microfiber Terry or PUL (Polyurethane-Laminated Fabric).
+                        <br>
+                        <strong>Outer layer</strong> — Hydrophobic Nylon or Polyester with DWR Coating.
+                        <br>
+                        <strong>Trunks</strong> — Hydrophilically treated PET with 3D texture for added dryness
+                        (optional material).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prototype -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Prototype</div>
+                    <div class="rk-proto-row">
+                        <div class="rk-exp-image">
+                            <img src="prototype 1 isro.png" alt="Raksh prototype — front view">
+                        </div>
+                        <div class="rk-exp-image">
+                            <img src="prototype 2 isro.png" alt="Raksh prototype — packed view">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Scope -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Future Scope</div>
+                    <p class="rk-body">
+                        Future work extends Raksh to fecal waste management, gender-specific fit, and
+                        sustainable materials — with broader potential in eldercare, mobility support, and
+                        long-duration missions like lunar or Mars exploration.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="cs-section">
+            <div class="rk-patch">
+                <div class="rk-patch-inner">
+                    <div class="cs-section-label">Conclusion</div>
+                    <p class="rk-body">
+                        By narrowing the focus to urine management, Raksh reimagines a small but critical part
+                        of astronaut life in microgravity — grounded entirely in the astronaut's real
+                        experience and needs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project navigation -->
+        <div class="cs-project-nav">
+            <a href="kaha-ni.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
+            <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
+            <a href="shatter.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

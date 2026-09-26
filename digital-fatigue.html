@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Fatigue via Instagram | Krisha Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <style>
+        /* Digital Fatigue via Instagram-only overrides. Kept local to this
+           page so the other case study pages are unaffected. */
+
+        .cs-meta-c1,
+        .cs-meta-c2,
+        .cs-meta-c3,
+        .cs-meta-c4,
+        .cs-meta-c5,
+        .cs-meta-featured {
+            background: linear-gradient(135deg, #833ab4, #e1306c, #f77737);
+        }
+
+        .cs-meta-featured .cs-meta-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cs-hero-media {
+            aspect-ratio: 3/4;
+        }
+
+        .cs-hero-media img {
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        /* "Patch" — the full-bleed bordered card used for every section on
+           this page, same technique as the Overview split on other project
+           pages, just single-column since there's no accompanying image. */
+        .ig-patch {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 3px solid var(--pure-black);
+            border-bottom: 3px solid var(--pure-black);
+            background: white;
+        }
+
+        .ig-patch-inner {
+            padding: 56px clamp(24px, 6vw, 96px);
+        }
+
+        .ig-patch-pink {
+            background: #e1306c;
+            color: white;
+        }
+
+        .ig-patch-pink .cs-section-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ig-patch-pink .cs-split-title {
+            color: white;
+        }
+
+        .ig-patch-pink p {
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .ig-title {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 10px;
+            margin-bottom: 24px;
+            max-width: 780px;
+        }
+
+        .ig-body {
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 780px;
+        }
+
+        .ig-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            background: var(--pure-black);
+            color: white;
+            border: 2px solid var(--pure-black);
+            border-radius: 12px;
+            padding: 16px 28px;
+            font-family: var(--font-family);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .ig-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translate(-2px, -2px);
+        }
+
+        .ig-patch-pink .ig-btn {
+            background: white;
+            color: var(--pure-black);
+            border-color: white;
+        }
+
+        .ig-patch-pink .ig-btn:hover {
+            background: var(--pure-black);
+            color: white;
+        }
+
+        /* Primary Research — three segments side by side inside the patch */
+        .ig-research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .ig-research-box {
+            border: 2px solid var(--pure-black);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .ig-research-box h3 {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .ig-research-stat {
+            display: inline-block;
+            color: #e1306c;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .ig-research-box p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--on-background);
+        }
+
+        /* Secondary Research — description + link list side by side */
+        .ig-split-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .ig-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ig-links-list a {
+            font-size: 14px;
+            color: var(--secondary);
+            word-break: break-all;
+            text-decoration: underline;
+        }
+
+        .ig-links-list a:hover {
+            color: var(--primary);
+        }
+
+        .ig-doc-links {
+            list-style: none;
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ig-doc-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid var(--pure-black);
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            color: var(--pure-black);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .ig-doc-links a:hover {
+            background: var(--pure-black);
+            color: white;
+            transform: translate(-2px, -2px);
+        }
+
+        /* Key Insights — 3 per row, Instagram-gradient boxes */
+        .ig-insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .ig-insight-box {
+            background: linear-gradient(135deg, #833ab4, #e1306c 55%, #f77737);
+            border-radius: 16px;
+            padding: 26px 24px;
+            color: white;
+        }
+
+        .ig-insight-num {
+            font-size: 13px;
+            font-weight: 800;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .ig-insight-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .ig-insight-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        /* Personas — white cards, colored initials avatar */
+        .ig-persona-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .ig-persona-card {
+            border: 3px solid var(--pure-black);
+            border-radius: 16px;
+            background: white;
+            padding: 24px 20px;
+        }
+
+        .ig-persona-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            margin: 0 auto 14px;
+        }
+
+        .ig-persona-name {
+            text-align: center;
+            font-weight: 800;
+            font-size: 17px;
+            margin-bottom: 2px;
+        }
+
+        .ig-persona-meta {
+            text-align: center;
+            font-size: 12px;
+            color: var(--outline);
+            margin-bottom: 14px;
+        }
+
+        .ig-persona-quote {
+            font-size: 13px;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--on-background);
+            border-left: 3px solid #e1306c;
+            padding-left: 10px;
+            margin-bottom: 14px;
+        }
+
+        .ig-persona-block {
+            margin-bottom: 12px;
+        }
+
+        .ig-persona-block h4 {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--outline);
+            margin-bottom: 6px;
+        }
+
+        .ig-persona-block ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ig-persona-block li {
+            font-size: 12.5px;
+            line-height: 1.5;
+            padding-left: 14px;
+            position: relative;
+            color: var(--on-background);
+        }
+
+        .ig-persona-block li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #e1306c;
+        }
+
+        .ig-persona-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .ig-persona-tags span {
+            border: 1.5px solid var(--pure-black);
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 10.5px;
+            font-weight: 700;
+        }
+
+        /* Embeds — dashboard + research board */
+        .ig-embed-frame {
+            border: 4px solid var(--pure-black);
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ig-embed-frame iframe {
+            width: 100%;
+            display: block;
+        }
+
+        .ig-embed-cta {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        /* Concept screens — 6 across, one static row, no scroll */
+        .ig-concept-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .ig-concept-row .ig-phone {
+            flex: 1 1 0;
+            min-width: 0;
+            border: 3px solid var(--pure-black);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fafafa;
+            aspect-ratio: 484/885;
+        }
+
+        .ig-concept-row .ig-phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+
+            .ig-research-grid,
+            .ig-insight-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ig-persona-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ig-concept-row {
+                flex-wrap: wrap;
+            }
+
+            .ig-concept-row .ig-phone {
+                flex: 1 1 calc(33.333% - 11px);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .cs-meta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ig-split-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .ig-research-grid,
+            .ig-insight-grid,
+            .ig-persona-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ig-concept-row .ig-phone {
+                flex: 1 1 calc(50% - 8px);
+            }
+
+            .ig-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo">Krisha Shah</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="works.html" class="active">ALL WORKS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="#" class="btn btn-3d">View my 3D website ✦</a>
+                <a href="mailto:krisha@example.com" class="btn btn-nav">Say Hi!</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="works.html" class="cs-back">← Back to All Works</a>
+
+        <!-- Hero -->
+        <section class="cs-hero">
+            <div class="cs-hero-text">
+                <span class="cs-tag">UX Research</span>
+                <h1 class="headline-xl">DIGITAL FATIGUE VIA INSTAGRAM</h1>
+                <p class="cs-hero-tagline">Why young adults keep scrolling even when they know it's draining them —
+                    and a calmer way to stop.</p>
+            </div>
+            <div class="cs-hero-media">
+                <img src="insta 4.png" alt="Digital Fatigue via Instagram — concept screen">
+            </div>
+        </section>
+
+        <!-- Meta -->
+        <div class="cs-meta-grid">
+            <div class="cs-meta-item cs-meta-c1">
+                <div class="cs-meta-label">Project Type</div>
+                <div class="cs-meta-value">UX Research</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c2">
+                <div class="cs-meta-label">Role</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-featured">
+                <div class="cs-meta-label">Duration</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c3">
+                <div class="cs-meta-label">Team</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+            <div class="cs-meta-item cs-meta-c4">
+                <div class="cs-meta-label">Tools</div>
+                <div class="cs-meta-value">TBD</div>
+            </div>
+        </div>
+
+        <!-- Research Overview -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Research Overview</div>
+                    <p class="ig-body" style="margin-top: 10px;">
+                        This research explores why young adults keep compulsively scrolling Instagram Reels even
+                        when they know it's harmful. Using interviews, surveys, and other methods, it uncovers a
+                        "restlessness-relief-fatigue" loop fueled by low-value "brain rot" content, escapism, and
+                        social obligation — revealing the gap between wanting to stop and actually being able to.
+                    </p>
+                    <a href="https://docs.google.com/document/d/14AUOh7SEvwR4GvPnUtSjceWlkKJmSTCyLCLge34tqNo/edit?tab=t.h1n1v7ww41um"
+                        target="_blank" rel="noopener" class="ig-btn">Read the Analytical Report ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Statement -->
+        <section class="cs-section">
+            <div class="ig-patch ig-patch-pink">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Problem Statement</div>
+                    <h2 class="cs-split-title" style="margin-top: 10px;">Aware it's draining them, unable to stop
+                    </h2>
+                    <p class="ig-body">
+                        Young adults aged 18–24 are aware that their doomscrolling habits are compulsive and
+                        mentally draining, yet they struggle to stop because the high-dopamine, low-value content
+                        on social media keeps them engaged. They need a constructive substitute that offers the
+                        same sense of escape and stimulation, but through purposeful, value-driven content rather
+                        than empty, mindless scrolling.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Designing for Intentional Pauses -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Designing for Intentional Pauses</div>
+                    <p class="ig-body" style="margin-top: 10px;">
+                        Instagram introduces a "Calm Mode" that activates when restless, repetitive scrolling is
+                        detected — nudging users with "Need a breather? Switch to Calm Mode." This shifts them into
+                        a self-curated, distraction-free feed built only from content they've chosen in advance
+                        (like photography, design inspiration, or close friends). The feed isn't infinite — it
+                        naturally closes after 15–20 posts, offering a pause that feels deliberate and restorative
+                        instead of just another scroll hole.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primary Research -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Primary Research</div>
+                    <div class="ig-research-grid">
+                        <div class="ig-research-box">
+                            <h3>a) Physical Interviews</h3>
+                            <span class="ig-research-stat">15 semi-structured interviews</span>
+                            <p>In-person interviews exploring Instagram usage habits, emotional responses, and
+                                digital fatigue.</p>
+                        </div>
+                        <div class="ig-research-box">
+                            <h3>b) Online Surveys</h3>
+                            <span class="ig-research-stat">35 anonymous responses</span>
+                            <p>Google Forms responses on usage frequency, self-reported fatigue, emotional impact,
+                                and regulatory behaviours.</p>
+                        </div>
+                        <div class="ig-research-box">
+                            <h3>c) Instagram Story Polls</h3>
+                            <span class="ig-research-stat">400 responses</span>
+                            <p>A Stories poll ("What do you use Instagram for?") tracking personal,
+                                content-creation, business, and shopping use via Instagram Insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary Research -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Secondary Research</div>
+                    <div class="ig-split-inner" style="margin-top: 10px;">
+                        <div>
+                            <p class="ig-body">
+                                Research focused on habit-loop psychology, addictive design patterns, digital
+                                fatigue, and emotional dependency on social media.
+                            </p>
+                            <div class="ig-doc-links">
+                                <a href="https://docs.google.com/document/d/14AUOh7SEvwR4GvPnUtSjceWlkKJmSTCyLCLge34tqNo/edit?tab=t.h1n1v7ww41um"
+                                    target="_blank" rel="noopener">📄 Google Docs</a>
+                                <a href="https://www.figma.com/board/0vwtdK5nf7KGbZkKw3mfQK/Group-8-Design-Workshop?node-id=0-1&t=m3edvpwJMe39vjnQ-1"
+                                    target="_blank" rel="noopener">🎨 Figma File</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="cs-section-label" style="font-size: 13px; margin-bottom: 10px;">Source Links
+                            </div>
+                            <ul class="ig-links-list">
+                                <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12329480" target="_blank"
+                                        rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC12329480</a></li>
+                                <li><a href="https://drjud.com/what-is-the-habit-loop/" target="_blank"
+                                        rel="noopener">drjud.com/what-is-the-habit-loop</a></li>
+                                <li><a href="https://rijularora.com/blog/hooked-on-instagram-the-psychology-behind-its-addictive-design"
+                                        target="_blank" rel="noopener">rijularora.com — hooked on Instagram</a></li>
+                                <li><a href="https://freedom.to/blog/this-is-how-instagram-keeps-you-addicted/"
+                                        target="_blank" rel="noopener">freedom.to — how Instagram keeps you
+                                        addicted</a></li>
+                                <li><a href="https://med.stanford.edu/news/insights/2021/10/addictive-potential-of-social-media-explained.html"
+                                        target="_blank" rel="noopener">med.stanford.edu — addictive potential of
+                                        social media</a></li>
+                                <li><a href="https://uxplanet.org/instagram-addiction-and-possible-design-solutions-471418c28d6f"
+                                        target="_blank" rel="noopener">uxplanet.org — Instagram addiction &
+                                        design solutions</a></li>
+                                <li><a href="https://www.mdpi.com/0718-1876/20/3/195" target="_blank"
+                                        rel="noopener">mdpi.com/0718-1876/20/3/195</a></li>
+                                <li><a href="https://www.healthline.com/health/why-are-instagram-stories-so-addicting"
+                                        target="_blank" rel="noopener">healthline.com — why Instagram Stories are
+                                        so addicting</a></li>
+                                <li><a href="https://ijdmsrjournal.com/issue_dcp/Instagram%20Addiction%20the%20Current%20Trends.pdf"
+                                        target="_blank" rel="noopener">ijdmsrjournal.com — Instagram Addiction:
+                                        Current Trends (PDF)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insights -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Key Insights</div>
+                    <div class="ig-insight-grid">
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">01</div>
+                            <div class="ig-insight-title">Hours Spent on Instagram</div>
+                            <div class="ig-insight-desc">Instagram use is highly fragmented across the day, but
+                                disproportionately concentrated at night due to lowered self-regulation and lack
+                                of accountability.</div>
+                        </div>
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">02</div>
+                            <div class="ig-insight-title">Routine and Habit Formation</div>
+                            <div class="ig-insight-desc">Instagram has evolved from a voluntary check-in to a
+                                reflexive bedtime ritual, triggered without conscious intention.</div>
+                        </div>
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">03</div>
+                            <div class="ig-insight-title">Content Type</div>
+                            <div class="ig-insight-desc">Low-information "brain-rot" content produces high dopamine
+                                but yields guilt and mental fatigue, whereas high-utility content does not.</div>
+                        </div>
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">04</div>
+                            <div class="ig-insight-title">Purpose of Using Instagram</div>
+                            <div class="ig-insight-desc">Instagram has shifted from personal use to a social
+                                obligation — a space users feel they must occupy.</div>
+                        </div>
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">05</div>
+                            <div class="ig-insight-title">Self-Realisation</div>
+                            <div class="ig-insight-desc">Users possess strong self-awareness of overuse but cannot
+                                convert that awareness into behaviour change.</div>
+                        </div>
+                        <div class="ig-insight-box">
+                            <div class="ig-insight-num">06</div>
+                            <div class="ig-insight-title">Content Value & Perception</div>
+                            <div class="ig-insight-desc">Users justify continued usage by pointing to pockets of
+                                "valuable content" (tech, design, reflective posts), even though most consumed
+                                content is low-value.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personas -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Personas</div>
+                    <div class="ig-persona-grid">
+                        <div class="ig-persona-card">
+                            <div class="ig-persona-avatar" style="background: #c0392b;">RS</div>
+                            <div class="ig-persona-name">Riya Sharma</div>
+                            <div class="ig-persona-meta">26 · Social Media Manager · Mumbai</div>
+                            <div class="ig-persona-quote">"I scroll through Instagram to monitor my brand, but it
+                                gets overwhelming with endless updates and notifications."</div>
+                            <div class="ig-persona-block">
+                                <h4>Core Needs</h4>
+                                <ul>
+                                    <li>Discover new marketing trends quickly</li>
+                                    <li>Track engagement and analytics with precision</li>
+                                    <li>Manage multiple accounts for work and side projects</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-block">
+                                <h4>Frustrations</h4>
+                                <ul>
+                                    <li>Notification overload saps focus</li>
+                                    <li>Frequent platform changes create learning barriers</li>
+                                    <li>Feels anxious stepping away from daily activity</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-tags">
+                                <span>Goal-oriented</span><span>Analytical</span><span>Extrovert</span><span>Tech-savvy</span>
+                            </div>
+                        </div>
+
+                        <div class="ig-persona-card">
+                            <div class="ig-persona-avatar" style="background: #2980b9;">AS</div>
+                            <div class="ig-persona-name">Aditya Singh</div>
+                            <div class="ig-persona-meta">23 · Music Producer & Influencer · Pune</div>
+                            <div class="ig-persona-quote">"Every time I post, I check the numbers constantly — it's
+                                hard not to feel drained by the pressure."</div>
+                            <div class="ig-persona-block">
+                                <h4>Core Needs</h4>
+                                <ul>
+                                    <li>Grow authentic followers</li>
+                                    <li>Increase post reach and engagement</li>
+                                    <li>Maintain a strong personal brand</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-block">
+                                <h4>Frustrations</h4>
+                                <ul>
+                                    <li>Algorithm unpredictability affects visibility</li>
+                                    <li>Creative exhaustion from constant posting</li>
+                                    <li>Anxiety over follower comparison</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-tags">
+                                <span>Creative</span><span>Energetic</span><span>Perfectionist</span><span>Tech-savvy</span>
+                            </div>
+                        </div>
+
+                        <div class="ig-persona-card">
+                            <div class="ig-persona-avatar" style="background: #27ae60;">MD</div>
+                            <div class="ig-persona-name">Mitali Deshmukh</div>
+                            <div class="ig-persona-meta">20 · Student · Delhi</div>
+                            <div class="ig-persona-quote">"I come to relax, but end up losing track of time and
+                                feeling like I've wasted my evening."</div>
+                            <div class="ig-persona-block">
+                                <h4>Core Needs</h4>
+                                <ul>
+                                    <li>Socialize digitally with friends</li>
+                                    <li>Discover new interests and trends</li>
+                                    <li>Achieve short relaxation during breaks</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-block">
+                                <h4>Frustrations</h4>
+                                <ul>
+                                    <li>Finds it hard to limit screen time</li>
+                                    <li>Experiences FOMO and life comparison</li>
+                                    <li>Feels unproductive post-use</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-tags">
+                                <span>Friendly</span><span>Introvert</span><span>Spontaneous</span>
+                            </div>
+                        </div>
+
+                        <div class="ig-persona-card">
+                            <div class="ig-persona-avatar" style="background: #d4a017;">NP</div>
+                            <div class="ig-persona-name">Neha Patel</div>
+                            <div class="ig-persona-meta">31 · Jewelry Shop Owner · Surat</div>
+                            <div class="ig-persona-quote">"I know Instagram helps my business but all the updates,
+                                messages, and features just wear me out by the end of the day."</div>
+                            <div class="ig-persona-block">
+                                <h4>Core Needs</h4>
+                                <ul>
+                                    <li>Promote business and connect with customers</li>
+                                    <li>Stay updated on market trends</li>
+                                    <li>Easily process orders and queries</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-block">
+                                <h4>Frustrations</h4>
+                                <ul>
+                                    <li>Platform changes disrupt workflow</li>
+                                    <li>Pressure to create diverse visual content</li>
+                                    <li>Distracted by personal feeds during work hours</li>
+                                </ul>
+                            </div>
+                            <div class="ig-persona-tags">
+                                <span>Practical</span><span>Patient</span><span>Business-focused</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section class="cs-section cs-center">
+            <div class="cs-section-label">Data</div>
+            <h2 class="cs-section-title" style="margin-left: auto; margin-right: auto;">Research Dashboard</h2>
+            <div class="ig-embed-frame">
+                <iframe src="https://datastudio.google.com/embed/reporting/7fcd7a5b-485e-4678-8dd7-ecb36b9d9110/page/M7ueF"
+                    height="600" frameborder="0" style="border:0"
+                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="ig-embed-cta">
+                <a href="https://datastudio.google.com/s/gCKMFJb-RKc" target="_blank" rel="noopener"
+                    class="ig-btn">Open Full Dashboard ↗</a>
+            </div>
+        </section>
+
+        <!-- Research board -->
+        <section class="cs-section cs-center">
+            <div class="cs-section-label">Workshop</div>
+            <h2 class="cs-section-title" style="margin-left: auto; margin-right: auto;">Research Board</h2>
+            <div class="ig-embed-frame">
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" height="450"
+                    src="https://embed.figma.com/board/0vwtdK5nf7KGbZkKw3mfQK/Group-8-Design-Workshop?node-id=0-1&embed-host=share"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="ig-embed-cta">
+                <a href="https://www.figma.com/board/0vwtdK5nf7KGbZkKw3mfQK/Group-8-Design-Workshop?node-id=0-1&t=m3edvpwJMe39vjnQ-1"
+                    target="_blank" rel="noopener" class="ig-btn">Open Research Board ↗</a>
+            </div>
+        </section>
+
+        <!-- Concept screens -->
+        <section class="cs-section">
+            <div class="cs-section-label">Walkthrough</div>
+            <h2 class="cs-section-title">From Restless Scroll to Focus Feed</h2>
+            <div class="ig-concept-row">
+                <div class="ig-phone"><img loading="lazy" src="insta 1.png" alt="Breathe in"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 2.png" alt="Breathing transition"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 3.png" alt="Breathe out"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 4.png" alt="Try Focus Feed prompt"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 5.png" alt="Focus feed view"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 6.png" alt="Focus feed post detail"></div>
+            </div>
+        </section>
+
+        <!-- Concept -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Concept</div>
+                    <h2 class="cs-split-title" style="margin-top: 10px;">Our Concept</h2>
+                    <p class="ig-body">
+                        When restlessness kicks in, the app asks: "Feeling restless? Try Focus Mode." Saying yes
+                        drops you into a minimal, ad-free, distraction-free feed of only what you've pre-selected —
+                        photography, design, close friends. It's capped at 15–20 posts, so it ends on its own,
+                        leaving you refreshed and in control instead of guilty and drained.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why This Solution -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Rationale</div>
+                    <h2 class="cs-split-title" style="margin-top: 10px;">Why This Solution</h2>
+                    <p class="ig-body">
+                        It works because it strips away distractions and endless choice — a personalized, ad-free
+                        feed with a built-in stopping point. That structure turns scrolling into an intentional
+                        break rather than a guilt-inducing spiral, supporting mental clarity, lower anxiety, and
+                        genuine control over social media use.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expected Impact -->
+        <section class="cs-section">
+            <div class="ig-patch">
+                <div class="ig-patch-inner">
+                    <div class="cs-section-label">Outcome</div>
+                    <h2 class="cs-split-title" style="margin-top: 10px;">Expected Impact</h2>
+                    <p class="ig-body">
+                        Sharper focus and less digital fatigue, thanks to a short, personalized feed that replaces
+                        endless scrolling with intentional breaks. The result is healthier habits, better mental
+                        clarity, and more mindful, guilt-free engagement.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project navigation -->
+        <div class="cs-project-nav">
+            <a href="borrowed-time.html" class="cs-nav-btn cs-nav-prev">← Previous Project</a>
+            <a href="works.html" class="cs-nav-btn cs-nav-center">All Works</a>
+            <a href="kaha-ni.html" class="cs-nav-btn cs-nav-next">Next Project →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="logo">KRISHA SHAH</div>
+            <div style="display: flex; gap: 24px; font-weight: 700; font-size: 14px;">
+                <a href="#" style="color: inherit; text-decoration: none;">Playground</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Resume</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Email</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Instagram</a>
+            </div>
+            <div class="label-bold" style="text-transform: none;">© 2024 Krisha Shah • Stay Playful</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
