@@ -127,6 +127,26 @@
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             flex-shrink: 0;
+            transition: width 0.5s ease;
+        }
+
+        /* Closed book — just the cover, at a single page's width, no empty
+           left half showing at all. */
+        .bt-book-stage.bt-closed {
+            width: min(46vw, 460px);
+            aspect-ratio: 842 / 1188;
+        }
+
+        .bt-book-stage.bt-closed .bt-slot-left {
+            display: none;
+        }
+
+        .bt-book-stage.bt-closed .bt-slot-right {
+            width: 100%;
+        }
+
+        .bt-book-stage.bt-closed::after {
+            display: none;
         }
 
         .bt-page-slot {
@@ -511,6 +531,7 @@
             function renderStatic() {
                 setSlot(leftImg, leftSlot, leftContent());
                 setSlot(rightImg, rightSlot, rightContent());
+                stage.classList.toggle('bt-closed', turned === 0);
                 updateUI();
             }
 
@@ -526,6 +547,10 @@
                 // partway through the swing, so give it its new content now
                 // (the NEXT leaf's front, two story-pages further on).
                 setSlot(rightImg, rightSlot, rightAfter(leaf + 1));
+
+                // Opening the cover — expand from single-page to a full
+                // spread as the same motion that swings it open.
+                if (leaf === 0) stage.classList.remove('bt-closed');
 
                 setFace(flipFrontImg, front);
                 setFace(flipBackImg, back);
@@ -571,6 +596,8 @@
                 setTimeout(function () {
                     setSlot(rightImg, rightSlot, front);
                     turned -= 1;
+                    // Closing the cover again — shrink back to single-page.
+                    if (turned === 0) stage.classList.add('bt-closed');
                     updateUI();
                 }, 850);
             }
