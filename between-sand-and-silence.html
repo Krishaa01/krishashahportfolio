@@ -108,6 +108,7 @@
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="works.html" class="active">ALL WORKS</a></li>
                     <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
                 </ul>
             </nav>
             <div style="display: flex; gap: 16px; align-items: center;">
@@ -172,7 +173,7 @@
                     <div class="cs-split-body">
                         <p>
                             A multisensory VR experience inspired by a haunting detail from John Marshall's excavation
-                            records — a skeleton found beside a broken pot in Mohenjo-daro. The player lives through
+                            records a skeleton found beside a broken pot in Mohenjo-daro. The player lives through
                             the final moments of the city's last inhabitant, then returns as a silent witness. In the
                             final act, they retrace the exact footsteps and position of that last person, completing
                             the journey that was never finished.
@@ -194,7 +195,7 @@
                         <p>
                             There is a specific historical fact that stayed with us. When British-era construction
                             workers were laying railway tracks through the Indus Valley in the 1850s, they found an
-                            unusual abundance of ready-made bricks in the ground — fired, uniform, ancient. They used
+                            unusual abundance of ready-made bricks in the ground fired, uniform, ancient. They used
                             them as ballast for the tracks. Those bricks were Harappa Civilization.
                         </p>
                     </div>
@@ -207,7 +208,7 @@
                 <p class="cs-text-box">
                     An entire layer of a 4000 year old civilization was pulled out of the earth, loaded onto trolleys,
                     and used for railway construction. The workers carried it without knowing what they were carrying.
-                    The city was dismantled a second time — quietly, practically, without ceremony.
+                    The city was dismantled a second time quietly, practically, without ceremony.
                 </p>
             </div>
 
@@ -217,13 +218,13 @@
                     <p>A VR environment built in Unity where the virtual space is aligned precisely to the real
                         physical space. The sunlight and shadow of the real corridor are mapped to the day and night
                         scenes of the VR world. A cooler unit positioned outside the mapped area pushes cold air into
-                        the shadow zone — this becomes the physical sensation of the scene transition from day to
+                        the shadow zone this becomes the physical sensation of the scene transition from day to
                         night.</p>
                 </div>
                 <div class="cs-timeline-box">
                     <div class="cs-timeline-era">Concept Two · The Trolley</div>
                     <p>A physical trolley with a rotary encoder embedded inside. As the player pushes it forward, the
-                        encoder sends positional input to TouchDesigner, which controls a video narrative — the story
+                        encoder sends positional input to TouchDesigner, which controls a video narrative the story
                         of the laborer, the bricks, the city. The speed of the push controls the pace of the story.
                         Stop, and time stops. Push back, and the narrative offers a different answer.</p>
                 </div>
@@ -244,8 +245,8 @@
                 <div class="cs-pipeline-step">
                     <div class="cs-pipeline-num">02</div>
                     <div class="cs-pipeline-title">The Last Person</div>
-                    <div class="cs-pipeline-desc">The trolley stops. They find a clay pot — the only object in the
-                        space — with handprints already on it. They carry it toward a well. Footprints appear ahead,
+                    <div class="cs-pipeline-desc">The trolley stops. They find a clay pot the only object in the
+                        space with handprints already on it. They carry it toward a well. Footprints appear ahead,
                         stopping mid-stride, two steps before the water's edge. The player walks those last two steps
                         and places the pot.</div>
                 </div>
@@ -418,17 +419,8 @@
 
     <script src="main.js"></script>
     <script>
-        // Let a vertical mouse-wheel scroll the storyboard strip sideways while hovering it.
-        // Always redirect (rather than only when |deltaY| > |deltaX|) so this works
-        // consistently with every mouse/trackpad.
-        document.querySelectorAll('#storyTrack').forEach(function (el) {
-            el.addEventListener('wheel', function (e) {
-                e.preventDefault();
-                el.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
-            }, { passive: false });
-        });
-
-        // Left/right arrow buttons for the storyboard.
+        // Left/right arrow buttons for the storyboard — the only way to
+        // browse it now (no more hijacking the page's vertical scroll).
         (function () {
             var track = document.getElementById('storyTrack');
             var prevBtn = document.getElementById('storyPrev');
@@ -439,10 +431,10 @@
                 return item ? item.getBoundingClientRect().width + 28 : 408;
             };
             prevBtn.addEventListener('click', function () {
-                track.scrollLeft -= step();
+                track.scrollBy({ left: -step(), behavior: 'smooth' });
             });
             nextBtn.addEventListener('click', function () {
-                track.scrollLeft += step();
+                track.scrollBy({ left: step(), behavior: 'smooth' });
             });
         })();
     </script>
