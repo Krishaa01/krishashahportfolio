@@ -36,9 +36,12 @@
         }
 
         /* Cover art is a tall poster, not a landscape screenshot — show it
-           whole instead of cropping it into a 4:3 box. */
+           whole instead of cropping it into a 4:3 box, and at half the
+           usual hero size since the full-size box was too large. */
         .cs-hero-media {
             aspect-ratio: 3/4;
+            max-width: 50%;
+            margin-left: auto;
         }
 
         .cs-hero-media img {
@@ -147,7 +150,9 @@
         }
 
         .bt-page-slot.bt-slot-blank {
-            background: #d8d4cc;
+            /* Same tone as the stage itself, so an empty slot reads as
+               "nothing here" instead of a distracting box. */
+            background: #1a1a1a;
         }
 
         .bt-page-slot.bt-slot-blank img {
@@ -210,6 +215,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .bt-flip-face.bt-face-blank {
+            background: #1a1a1a;
         }
 
         .bt-flip-face img {
@@ -387,7 +396,7 @@
                 </div>
                 <button class="bt-book-arrow" id="btNext" aria-label="Next page">›</button>
             </div>
-            <div class="bt-book-progress">Page <span id="btPageNum">1</span> of 22</div>
+            <div class="bt-book-progress" id="btPageNum">Cover</div>
             <div class="bt-book-hint">Click a page (or use the arrows / arrow keys) to turn it</div>
         </section>
 
@@ -414,19 +423,27 @@
 
     <script src="main.js"></script>
     <script>
-        // Custom flip book (no third-party embed) — a real open book: left
-        // page and right page both always visible, and turning a page swings
-        // a hinged card across the spine (same visible motion as an embedded
-        // flipbook), instead of a page just disappearing.
+        // Custom flip book (no third-party embed) — a real open book. Pages
+        // are paired into physical leaves, exactly like a real book: each
+        // leaf has a front (right-hand page) and a back (left-hand page),
+        // so turning one leaf swaps BOTH visible pages at once — it does
+        // NOT just slide the current right page over to the left.
         //
-        // `current` = the page number currently showing on the RIGHT.
-        // The LEFT page is always `current - 1` (blank before page 1).
+        // Leaf 0 is the cover (front = cover art, back = blank inside
+        // cover). Leaf i (i = 1..11) has front = page(2i-1), back = page(2i).
+        // `turned` = how many leaves have been turned so far (0..12).
         (function () {
-            var TOTAL = 22;
+            var STORY_PAGES = 22;
+            var LEAF_COUNT = STORY_PAGES / 2 + 1; // +1 for the cover leaf = 12
+            var COVER_SRC = 'image 1.jpg';
             var stage = document.getElementById('btStage');
             if (!stage) return;
 
             function srcFor(n) { return 'bt page ' + (n < 10 ? '0' + n : n) + '.jpg'; }
+            // Front/back page numbers for a given leaf. 0 means "the cover
+            // art", null means blank (the cover has no printed inside).
+            function frontPage(leaf) { return leaf === 0 ? 0 : 2 * leaf - 1; }
+            function backPage(leaf) { return leaf === 0 ? null : 2 * leaf; }
 
             var leftSlot = document.getElementById('btLeftSlot');
             var rightSlot = document.getElementById('btRightSlot');
@@ -439,11 +456,17 @@
             var prevBtn = document.getElementById('btPrev');
             var nextBtn = document.getElementById('btNext');
 
-            var current = 1;
+            var turned = 0;
             var animating = false;
 
+            // n === null renders blank; n === 0 renders the cover; anything
+            // 1..STORY_PAGES renders that interior page.
             function setSlot(imgEl, slotEl, n) {
-                if (n >= 1 && n <= TOTAL) {
+                if (n === 0) {
+                    imgEl.src = COVER_SRC;
+                    imgEl.alt = 'Borrowed Time — cover';
+                    slotEl.classList.remove('bt-slot-blank');
+                } else if (n >= 1 && n <= STORY_PAGES) {
                     imgEl.src = srcFor(n);
                     imgEl.alt = 'Borrowed Time — page ' + n;
                     slotEl.classList.remove('bt-slot-blank');
@@ -454,10 +477,20 @@
                 }
             }
 
+            function leftContent() { return turned === 0 ? null : backPage(turned - 1); }
+            function rightContent() { return turned < LEAF_COUNT ? frontPage(turned) : null; }
+
             function updateUI() {
-                pageNumEl.textContent = String(Math.min(current, TOTAL));
-                prevBtn.disabled = current <= 1;
-                nextBtn.disabled = current > TOTAL;
+                var right = rightContent();
+                if (turned === 0) {
+                    pageNumEl.textContent = 'Cover';
+                } else if (right === null) {
+                    pageNumEl.textContent = 'Page ' + STORY_PAGES + ' of ' + STORY_PAGES;
+                } else {
+                    pageNumEl.textContent = 'Page ' + right + ' of ' + STORY_PAGES;
+                }
+                prevBtn.disabled = turned <= 0;
+                nextBtn.disabled = turned >= LEAF_COUNT;
             }
 
             function unlockAfter(el, ms) {
@@ -473,24 +506,29 @@
             }
 
             // Render the resting state with no card/animation involved —
-            // used once at startup.
+            // used once at startup. Book starts closed: blank left, cover
+            // on the right.
             function renderStatic() {
-                setSlot(leftImg, leftSlot, current - 1);
-                setSlot(rightImg, rightSlot, current);
+                setSlot(leftImg, leftSlot, leftContent());
+                setSlot(rightImg, rightSlot, rightContent());
                 updateUI();
             }
 
             function goNext() {
-                if (animating || current > TOTAL) return;
+                if (animating || turned >= LEAF_COUNT) return;
                 animating = true;
 
-                var turningPage = current; // page currently on the right, about to turn
-                // The right slot is being vacated — it becomes visible again
-                // partway through the swing, so give it its new content now.
-                setSlot(rightImg, rightSlot, current + 1);
+                var leaf = turned; // the leaf currently facing up on the right, about to turn
+                var front = frontPage(leaf);
+                var back = backPage(leaf);
 
-                flipFrontImg.src = srcFor(turningPage);
-                flipBackImg.src = srcFor(turningPage);
+                // The right slot is being vacated — it becomes visible again
+                // partway through the swing, so give it its new content now
+                // (the NEXT leaf's front, two story-pages further on).
+                setSlot(rightImg, rightSlot, rightAfter(leaf + 1));
+
+                setFace(flipFrontImg, front);
+                setFace(flipBackImg, back);
                 flipCard.style.transform = 'rotateY(0deg)';
                 flipCard.classList.add('bt-active');
                 // Force layout so the browser registers the start state
@@ -503,22 +541,26 @@
                 setTimeout(function () {
                     // Card has landed on the left — hand off to the static
                     // left slot so it stays put once the card is hidden.
-                    setSlot(leftImg, leftSlot, turningPage);
-                    current += 1;
+                    setSlot(leftImg, leftSlot, back);
+                    turned += 1;
                     updateUI();
                 }, 850);
             }
 
             function goPrev() {
-                if (animating || current <= 1) return;
+                if (animating || turned <= 0) return;
                 animating = true;
 
-                var turningPage = current - 1; // page currently on the left, about to turn back
-                // The left slot is being vacated — give it its new content now.
-                setSlot(leftImg, leftSlot, current - 2);
+                var leaf = turned - 1; // the leaf currently facing up on the left, about to turn back
+                var front = frontPage(leaf);
+                var back = backPage(leaf);
 
-                flipFrontImg.src = srcFor(turningPage);
-                flipBackImg.src = srcFor(turningPage);
+                // The left slot is being vacated — give it its new content
+                // now (the PREVIOUS leaf's back, or blank before the cover).
+                setSlot(leftImg, leftSlot, leaf === 0 ? null : backPage(leaf - 1));
+
+                setFace(flipFrontImg, front);
+                setFace(flipBackImg, back);
                 flipCard.style.transform = 'rotateY(-180deg)';
                 flipCard.classList.add('bt-active');
                 void flipCard.offsetWidth;
@@ -527,10 +569,33 @@
 
                 unlockAfter(flipCard, 950);
                 setTimeout(function () {
-                    setSlot(rightImg, rightSlot, turningPage);
-                    current -= 1;
+                    setSlot(rightImg, rightSlot, front);
+                    turned -= 1;
                     updateUI();
                 }, 850);
+            }
+
+            // Helper used only for the "what's underneath" pre-set on next —
+            // named separately so it reads clearly at the call site above.
+            function rightAfter(nextLeaf) { return nextLeaf < LEAF_COUNT ? frontPage(nextLeaf) : null; }
+
+            // Sets one face of the flip card. `page` is null for a blank
+            // face (the cover's inside, or past the last page).
+            function setFace(imgEl, page) {
+                var faceEl = imgEl.parentElement;
+                if (page === null) {
+                    imgEl.removeAttribute('src');
+                    imgEl.alt = '';
+                    faceEl.classList.add('bt-face-blank');
+                } else if (page === 0) {
+                    imgEl.src = COVER_SRC;
+                    imgEl.alt = 'Borrowed Time — cover';
+                    faceEl.classList.remove('bt-face-blank');
+                } else {
+                    imgEl.src = srcFor(page);
+                    imgEl.alt = 'Borrowed Time — page ' + page;
+                    faceEl.classList.remove('bt-face-blank');
+                }
             }
 
             nextBtn.addEventListener('click', goNext);

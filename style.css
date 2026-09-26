@@ -287,6 +287,20 @@ nav a.active {
   transform: scale(1.02) rotate(1deg);
 }
 
+/* Straight at rest, tilts only on hover */
+.project-card.rotate-slight,
+.project-card.rotate-slight-right {
+  transform: rotate(0deg);
+}
+
+.project-card.rotate-slight:hover {
+  transform: scale(1.02) rotate(-2deg);
+}
+
+.project-card.rotate-slight-right:hover {
+  transform: scale(1.02) rotate(2deg);
+}
+
 .tag {
   display: inline-block;
   background: var(--pure-black);

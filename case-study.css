@@ -343,7 +343,7 @@
 .cs-pipeline-step:nth-child(3),
 .cs-pipeline-step:nth-child(4),
 .cs-pipeline-step:nth-child(5) {
-  background: linear-gradient(135deg, #0a5a94, #004170);
+  background: linear-gradient(135deg,#004170);
 }
 
 .cs-pipeline-step .cs-pipeline-num { color: #fdfcf9; }

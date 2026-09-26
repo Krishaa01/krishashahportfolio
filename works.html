@@ -66,6 +66,70 @@
             align-items: center;
             justify-content: center;
         }
+
+        .work-card.is-hidden {
+            display: none;
+        }
+
+        /* Category filters — colors pulled from the site's own home-page
+           palette (the pink nav button, plus the green/blue/orange triad
+           used across doodles, buttons and skill stickers). */
+        .works-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            border: 2px solid var(--pure-black);
+            border-radius: 999px;
+            padding: 10px 22px;
+            font-family: var(--font-family);
+            font-weight: 800;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: white;
+            color: var(--pure-black);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0 var(--pure-black);
+        }
+
+        .filter-btn.is-active {
+            color: white;
+            border-color: var(--pure-black);
+        }
+
+        .filter-btn[data-filter="all"].is-active {
+            background: var(--pure-black);
+        }
+
+        .filter-btn[data-filter="game"].is-active {
+            background: var(--electric-blue);
+        }
+
+        .filter-btn[data-filter="narrative"].is-active {
+            background: var(--zesty-orange);
+        }
+
+        .filter-btn[data-filter="research"].is-active {
+            background: var(--kelly-green);
+        }
+
+        @media (max-width: 700px) {
+            .works-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -89,16 +153,25 @@
 
     <main class="container">
         <div class="works-header">
-            <h1 class="headline-xl">ALL WORKS</h1>
-            <div class="star-icon">★</div>
-            <div class="doodle" style="top: -20px; left: -40px;"><svg width="40" height="40" viewBox="0 0 100 100">
-                    <path d="M10 50 L50 10 L90 50 L50 90 Z" fill="none" stroke="#22c55e" stroke-width="8" />
-                </svg></div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <h1 class="headline-xl">ALL WORKS</h1>
+                <div class="star-icon">★</div>
+                <div class="doodle" style="top: -20px; left: -40px;"><svg width="40" height="40"
+                        viewBox="0 0 100 100">
+                        <path d="M10 50 L50 10 L90 50 L50 90 Z" fill="none" stroke="#22c55e" stroke-width="8" />
+                    </svg></div>
+            </div>
+            <div class="works-filters">
+                <button class="filter-btn is-active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="game">Game &amp; Extended Realities</button>
+                <button class="filter-btn" data-filter="narrative">Narrative Design</button>
+                <button class="filter-btn" data-filter="research">Design Research</button>
+            </div>
         </div>
 
         <div class="works-grid">
             <!-- Project 1 -->
-            <div class="work-card" data-href="shatter.html">
+            <div class="work-card" data-href="shatter.html" data-category="game">
                 <div class="project-card rotate-slight">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -111,7 +184,7 @@
             </div>
 
             <!-- Project 2 -->
-            <div class="work-card" data-href="vr-mohenjo-daro.html">
+            <div class="work-card" data-href="vr-mohenjo-daro.html" data-category="game">
                 <div class="project-card">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -124,7 +197,7 @@
             </div>
 
             <!-- Project 2.5 -->
-            <div class="work-card" data-href="between-sand-and-silence.html">
+            <div class="work-card" data-href="between-sand-and-silence.html" data-category="game">
                 <div class="project-card">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -137,7 +210,7 @@
             </div>
 
             <!-- Project 3 -->
-            <div class="work-card" data-href="bioscope.html">
+            <div class="work-card" data-href="bioscope.html" data-category="narrative">
                 <div class="project-card rotate-slight-right">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -150,7 +223,7 @@
             </div>
 
             <!-- Project 4 -->
-            <div class="work-card" data-href="rani-no-hajiro.html">
+            <div class="work-card" data-href="rani-no-hajiro.html" data-category="research">
                 <div class="project-card rotate-slight">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -163,7 +236,7 @@
             </div>
 
             <!-- Project 5 -->
-            <div class="work-card" data-href="borrowed-time.html">
+            <div class="work-card" data-href="borrowed-time.html" data-category="narrative">
                 <div class="project-card rotate-slight-right">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -176,7 +249,7 @@
             </div>
 
             <!-- Project 6 -->
-            <div class="work-card" data-href="digital-fatigue.html">
+            <div class="work-card" data-href="digital-fatigue.html" data-category="research">
                 <div class="project-card rotate-slight">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -189,7 +262,7 @@
             </div>
 
             <!-- Project 7 -->
-            <div class="work-card" data-href="kaha-ni.html">
+            <div class="work-card" data-href="kaha-ni.html" data-category="narrative">
                 <div class="project-card rotate-slight-right">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -202,7 +275,7 @@
             </div>
 
             <!-- Project 8 -->
-            <div class="work-card" data-href="raksh.html">
+            <div class="work-card" data-href="raksh.html" data-category="research">
                 <div class="project-card rotate-slight">
                     <div class="stamp-border"
                         style="background: var(--pure-black); padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
@@ -211,7 +284,7 @@
                     </div>
                 </div>
                 <h4 class="headline-md" style="font-size: 24px; margin-top: 24px;">RAKSH</h4>
-                <span class="tag label-bold">PRODUCT DESIGN</span>
+                <span class="tag label-bold">PRODUCT RESEARCH & DESIGN</span>
             </div>
 
         </div>
@@ -245,6 +318,27 @@
         </div>
     </footer>
     <script src="main.js"></script>
+    <script>
+        // Category filters
+        (function () {
+            var buttons = document.querySelectorAll('.filter-btn');
+            var cards = document.querySelectorAll('.work-card');
+            if (!buttons.length) return;
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    buttons.forEach(function (b) { b.classList.remove('is-active'); });
+                    btn.classList.add('is-active');
+
+                    var filter = btn.dataset.filter;
+                    cards.forEach(function (card) {
+                        var show = filter === 'all' || card.dataset.category === filter;
+                        card.classList.toggle('is-hidden', !show);
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
