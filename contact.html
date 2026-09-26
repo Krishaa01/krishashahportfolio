@@ -231,6 +231,27 @@
             pointer-events: none;
         }
 
+        /* Character peeking over the top edge of the form card — bottom
+           edge sits exactly flush with the card's top border. */
+        .contact-peeker {
+            position: absolute;
+            bottom: 100%;
+            top: auto;
+            right: 35px;
+            width: 140px;
+            height: auto;
+            display: block;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @media (max-width: 900px) {
+            .contact-peeker {
+                width: 110px;
+                right: 20px;
+            }
+        }
+
         @media (max-width: 900px) {
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -287,6 +308,7 @@
                         viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="8" />
                     </svg></div>
+                <img src="me looking.png" alt="Krisha peeking over the form" class="contact-peeker">
                 <form id="contactForm">
                     <div class="contact-field">
                         <label for="cName">Name</label>
