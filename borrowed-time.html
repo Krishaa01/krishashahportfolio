@@ -480,6 +480,42 @@
             var turned = 0;
             var animating = false;
 
+            // Preloading — without this, each page's ~250KB image only
+            // starts downloading the instant it's needed, so on a slow
+            // connection the flip animation finishes before the image has
+            // arrived and the page pops in late or blank. Warm the
+            // browser's cache ahead of time instead.
+            var preloaded = {};
+            function preload(n) {
+                var key = n === 0 ? 'cover' : n;
+                if (preloaded[key] || n === null) return;
+                preloaded[key] = true;
+                var img = new Image();
+                img.src = n === 0 ? COVER_SRC : srcFor(n);
+            }
+            function preloadLeaf(leaf) {
+                if (leaf < 0 || leaf >= LEAF_COUNT) return;
+                preload(frontPage(leaf));
+                preload(backPage(leaf));
+            }
+            // Quietly warm the whole book in the background, one leaf at a
+            // time, so it's ready even if the visitor jumps around instead
+            // of reading straight through.
+            function warmRestInBackground() {
+                var leaf = 0;
+                function next() {
+                    if (leaf >= LEAF_COUNT) return;
+                    preloadLeaf(leaf);
+                    leaf += 1;
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(next, { timeout: 1000 });
+                    } else {
+                        setTimeout(next, 200);
+                    }
+                }
+                next();
+            }
+
             // n === null renders blank; n === 0 renders the cover; anything
             // 1..STORY_PAGES renders that interior page.
             function setSlot(imgEl, slotEl, n) {
@@ -534,6 +570,8 @@
                 setSlot(rightImg, rightSlot, rightContent());
                 stage.classList.toggle('bt-closed', turned === 0);
                 updateUI();
+                preloadLeaf(turned - 1);
+                preloadLeaf(turned + 1);
             }
 
             function goNext() {
@@ -570,6 +608,7 @@
                     setSlot(leftImg, leftSlot, back);
                     turned += 1;
                     updateUI();
+                    preloadLeaf(turned + 1);
                 }, 850);
             }
 
@@ -600,6 +639,7 @@
                     // Closing the cover again — shrink back to single-page.
                     if (turned === 0) stage.classList.add('bt-closed');
                     updateUI();
+                    preloadLeaf(turned - 1);
                 }, 850);
             }
 
@@ -656,6 +696,7 @@
             });
 
             renderStatic();
+            warmRestInBackground();
         })();
     </script>
 </body>
