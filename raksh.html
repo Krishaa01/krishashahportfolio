@@ -11,13 +11,17 @@
         /* Raksh-only overrides. Kept local to this page so the other case
            study pages are unaffected. */
 
+        .cs-meta-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
         .cs-meta-c1,
         .cs-meta-c2,
         .cs-meta-c3,
         .cs-meta-c4,
         .cs-meta-c5,
         .cs-meta-featured {
-            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+            background: #e8541c;
         }
 
         .cs-meta-featured .cs-meta-label {
@@ -26,6 +30,8 @@
 
         .cs-hero-media {
             aspect-ratio: 3/4;
+            max-width: 55%;
+            margin-left: auto;
         }
 
         .cs-hero-media img {
@@ -71,7 +77,6 @@
             font-size: 19px;
             font-weight: 600;
             line-height: 1.7;
-            max-width: 800px;
             margin-top: 10px;
         }
 
@@ -120,11 +125,11 @@
         }
 
         .rk-step-orange {
-            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+            background: #e8541c;
         }
 
         .rk-step-violet {
-            background: linear-gradient(135deg, #6a4fd6, #2f2470);
+            background: #5b3fc4;
         }
 
         /* Limitations — same orange box treatment, longer text */
@@ -136,10 +141,11 @@
         }
 
         .rk-limit-box {
-            background: linear-gradient(135deg, #ff8a3d, #e8541c);
+            background: #e8541c;
             color: white;
             border-radius: 18px;
             padding: 26px 22px;
+            text-align: center;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             cursor: default;
         }
@@ -222,7 +228,7 @@
 
         .rk-wear-row .rk-exp-image {
             flex: 1 1 0;
-            max-width: 180px;
+            min-width: 0;
             margin-top: 0;
             aspect-ratio: 1/1;
         }
@@ -232,7 +238,7 @@
             display: grid;
             grid-template-columns: 1.1fr 1fr;
             gap: 44px;
-            align-items: center;
+            align-items: start;
         }
 
         .rk-insp-media {
@@ -252,16 +258,16 @@
         .rk-insp-row {
             display: flex;
             gap: 16px;
-            margin-top: 32px;
+            margin-top: 16px;
         }
 
         .rk-insp-row .rk-insp-item {
             flex: 1 1 0;
+            min-width: 0;
             border: 2px solid var(--pure-black);
             border-radius: 12px;
             overflow: hidden;
             background: #f4f1ee;
-            max-width: 260px;
         }
 
         .rk-insp-row img {
@@ -340,7 +346,7 @@
             <div class="cs-hero-text">
                 <span class="cs-tag">Product Design · Space Tech</span>
                 <h1 class="headline-xl">RAKSH</h1>
-                <p class="cs-hero-tagline">A callback to protection and care — two things astronauts absolutely
+                <p class="cs-hero-tagline">A callback to protection and care two things astronauts absolutely
                     require in anti-gravity.</p>
             </div>
             <div class="cs-hero-media">
@@ -356,19 +362,15 @@
             </div>
             <div class="cs-meta-item cs-meta-c2">
                 <div class="cs-meta-label">Role</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">Product Research, Prototyping and Testing</div>
             </div>
             <div class="cs-meta-item cs-meta-featured">
                 <div class="cs-meta-label">Duration</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">3 Weeks</div>
             </div>
             <div class="cs-meta-item cs-meta-c3">
                 <div class="cs-meta-label">Team</div>
-                <div class="cs-meta-value">TBD</div>
-            </div>
-            <div class="cs-meta-item cs-meta-c4">
-                <div class="cs-meta-label">Tools</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">15 People</div>
             </div>
         </div>
 
@@ -474,25 +476,23 @@
                                     Astronaut-Like Lying Position</h2>
                                 <div class="rk-subhead">Test Setup</div>
                                 <p class="rk-body"><strong>Body Position:</strong> Lying on the back with knees
-                                    bent and feet elevated — mimicking the seated recline posture of astronauts
+                                    bent and feet elevated mimicking the seated recline posture of astronauts
                                     inside a spacecraft.</p>
-                            </div>
-                            <div>
                                 <div class="rk-subhead">Purpose</div>
                                 <p class="rk-body">Astronauts often rely on diapers during launch, long
                                     missions, or spacewalks where bathroom access is impossible. This
                                     experiment aimed to simulate the astronaut body position during launch and
                                     evaluate the diaper's usability, comfort, and performance.</p>
-                                <div class="rk-exp-image">
-                                    <img src="exp 3 isro.png" alt="Testing the diaper mockup in a lying, astronaut-like posture">
-                                </div>
+                            </div>
+                            <div class="rk-exp-image rk-img-small">
+                                <img src="exp 3 isro.png" alt="Testing the diaper mockup in a lying, astronaut-like posture">
                             </div>
                         </div>
                         <div class="rk-exp-full">
                             <div class="rk-subhead">Wearing the Pull-Up Diaper and Urinating in the Diaper</div>
-                            <p class="rk-body">Testing the pull-up diaper in a lying, astronaut-like posture
+                            <p class="rk-body">Testing the pull-up diaper in a lying, astronaut like posture
                                 revealed it was hard to wear without lifting the hips, and liquid distributed
-                                unevenly once in use — pointing to a need for stretchable panels and better
+                                unevenly once in use pointing to a need for stretchable panels and better
                                 fluid dispersion, while confirming the wetness indicator was a valuable feature
                                 to keep.</p>
                             <div class="rk-subhead">Removing and Disposing the Diaper</div>
@@ -516,15 +516,13 @@
                         <div class="rk-exp-top">
                             <div>
                                 <h2 class="rk-title">Testing an Adult Diaper: Capacity, Comfort & Leakage</h2>
-                            </div>
-                            <div>
                                 <p class="rk-body">Material testing (SAP-based diaper vs. liquid capacity,
                                     leakage, and post-use comfort under a 1L high-flow pour) confirmed strong
-                                    absorption but revealed leakage under pressure and long dry-time — pointing
+                                    absorption but revealed leakage under pressure and long dry-time pointing
                                     to the need for better fluid distribution in the final design.</p>
-                                <div class="rk-exp-image rk-img-small">
-                                    <img src="exp 2 isro.png" alt="Leakage and absorption test">
-                                </div>
+                            </div>
+                            <div class="rk-exp-image rk-img-small">
+                                <img src="exp 2 isro.png" alt="Leakage and absorption test">
                             </div>
                         </div>
                     </div>
@@ -575,7 +573,7 @@
                             <h2 class="rk-title">Baby Carriers Meet Adult Diapers</h2>
                             <p class="rk-body">
                                 Raksh draws on baby carriers for snug, ergonomic body support and adult diaper
-                                systems for leak-proof, body-conforming absorption — merging both into a
+                                systems for leak-proof, body-conforming absorption merging both into a
                                 compact, passive wearable solution for waste containment in microgravity.
                             </p>
                             <p class="rk-body">
@@ -583,16 +581,18 @@
                                 Inspiration of Waist Belt from: Expert Belts.
                             </p>
                         </div>
-                        <div class="rk-insp-media">
-                            <img src="inspiration isro main.png" alt="Space diaper concept sketches">
-                        </div>
-                    </div>
-                    <div class="rk-insp-row">
-                        <div class="rk-insp-item"><img src="inspiration isro 1.png" alt="Inspiration reference 1">
-                        </div>
-                        <div class="rk-insp-item"><img src="inspiration isro 2.png" alt="Inspiration reference 2">
-                        </div>
-                        <div class="rk-insp-item"><img src="inspiration isro 3.png" alt="Inspiration reference 3">
+                        <div>
+                            <div class="rk-insp-media">
+                                <img src="inspiration isro main.png" alt="Space diaper concept sketches">
+                            </div>
+                            <div class="rk-insp-row">
+                                <div class="rk-insp-item"><img src="inspiration isro 1.png"
+                                        alt="Inspiration reference 1"></div>
+                                <div class="rk-insp-item"><img src="inspiration isro 2.png"
+                                        alt="Inspiration reference 2"></div>
+                                <div class="rk-insp-item"><img src="inspiration isro 3.png"
+                                        alt="Inspiration reference 3"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -605,8 +605,8 @@
                 <div class="rk-patch-inner">
                     <div class="cs-section-label">Research</div>
                     <p class="rk-body">
-                        The diaper uses a four-layer material system — soft nonwoven top, SAP/SAF absorbent
-                        core with odor control, and a TPU leak-proof base — while the trunk pairs a microfiber
+                        The diaper uses a four-layer material system soft nonwoven top, SAP/SAF absorbent
+                        core with odor control, and a TPU leak-proof base while the trunk pairs a microfiber
                         inner layer with a hydrophobic, water-resistant outer shell for full containment.
                     </p>
                     <p class="rk-body">
@@ -645,7 +645,7 @@
                     <div class="cs-section-label">Future Scope</div>
                     <p class="rk-body">
                         Future work extends Raksh to fecal waste management, gender-specific fit, and
-                        sustainable materials — with broader potential in eldercare, mobility support, and
+                        sustainable materials with broader potential in eldercare, mobility support, and
                         long-duration missions like lunar or Mars exploration.
                     </p>
                 </div>
@@ -659,7 +659,7 @@
                     <div class="cs-section-label">Conclusion</div>
                     <p class="rk-body">
                         By narrowing the focus to urine management, Raksh reimagines a small but critical part
-                        of astronaut life in microgravity — grounded entirely in the astronaut's real
+                        of astronaut life in microgravity grounded entirely in the astronaut's real
                         experience and needs.
                     </p>
                 </div>

@@ -11,6 +11,10 @@
         /* Kaha-ni-only overrides. Kept local to this page so the other case
            study pages are unaffected. */
 
+        .cs-meta-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
         .cs-hero-media {
             aspect-ratio: 4/3;
         }
@@ -77,7 +81,7 @@
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             gap: 48px;
-            align-items: center;
+            align-items: start;
         }
 
         .kn-split-media {
@@ -225,7 +229,7 @@
             </div>
             <div class="cs-meta-item cs-meta-c2">
                 <div class="cs-meta-label">Role</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">Backend and Narrative Logic</div>
             </div>
             <div class="cs-meta-item cs-meta-featured">
                 <div class="cs-meta-label">Duration</div>
@@ -233,11 +237,11 @@
             </div>
             <div class="cs-meta-item cs-meta-c3">
                 <div class="cs-meta-label">Team</div>
-                <div class="cs-meta-value">Krisha Shah, Mohammed Sheikh, Paras Chanana, Vaibhav Deshmukh</div>
+                <div class="cs-meta-value">4 Members</div>
             </div>
             <div class="cs-meta-item cs-meta-c4">
                 <div class="cs-meta-label">Tools</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">LLM Model Gemini 3.5 Flash, Arduino and Camera</div>
             </div>
         </div>
 
@@ -246,8 +250,8 @@
             <div class="kn-patch">
                 <div class="kn-patch-inner">
                     <div class="cs-section-label">Concept</div>
-                    <p class="kn-lede">KAHA-NI is a machine that looks at an object and prints a short generated
-                        story about it.</p>
+                    <p class="kn-lede" style="max-width: none;">KAHA-NI is a machine that looks at an object and
+                        prints a short generated story about it.</p>
                 </div>
             </div>
         </section>
@@ -257,14 +261,15 @@
             <div class="kn-patch">
                 <div class="kn-patch-inner">
                     <div class="cs-section-label">How It Works</div>
-                    <h2 class="kn-title">Hold it up. Press the button. It prints a story.</h2>
-                    <p class="kn-body">
+                    <h2 class="kn-title" style="max-width: none;">Hold it up. Press the button. It prints a story.
+                    </h2>
+                    <p class="kn-body" style="max-width: none;">
                         Hold something up to the camera. Press the button. The machine sees the object, searches
                         what the internet currently associates with it, and drifts that sideways away from what
                         the thing is, toward what it might mean. The machine then prints a short story about the
                         object in about thirty seconds.
                     </p>
-                    <p class="kn-body">
+                    <p class="kn-body" style="max-width: none;">
                         Then the machine forgets. The object, the story, the moment; nothing is stored. The
                         machine has no memory. The slip does.
                     </p>
@@ -334,34 +339,6 @@
             </div>
         </section>
 
-        <!-- Watch -->
-        <section class="cs-section">
-            <div class="cs-section-label">Watch</div>
-            <h2 class="cs-section-title">Kaha-ni in Action</h2>
-            <div class="kn-video-frame" id="knVideoFrame">
-                <div class="kn-video-play" id="knVideoPlay">
-                    <div class="kn-video-play-btn">▶</div>
-                </div>
-            </div>
-            <div class="kn-video-note">Playing loads the video from YouTube. Nothing is loaded from them until you
-                press play.</div>
-        </section>
-
-        <!-- Tags -->
-        <section class="cs-section">
-            <div class="cs-section-label">Tags</div>
-            <div class="kn-tags">
-                <span>algorithm based</span>
-                <span>generative story</span>
-                <span>human-ai interaction</span>
-                <span>interactive installation</span>
-                <span>memory board</span>
-                <span>one time story generator</span>
-                <span>participatory</span>
-                <span>tangible interaction</span>
-            </div>
-        </section>
-
         <!-- Glimpses -->
         <section class="cs-section">
             <div class="cs-section-label">Look</div>
@@ -392,22 +369,6 @@
 
     <script src="main.js"></script>
     <script>
-        // Click-to-load YouTube embed — same idea used on the source project
-        // page: nothing is fetched from YouTube until the visitor presses play.
-        (function () {
-            var frame = document.getElementById('knVideoFrame');
-            var playBtn = document.getElementById('knVideoPlay');
-            if (!frame || !playBtn) return;
-            playBtn.addEventListener('click', function () {
-                var iframe = document.createElement('iframe');
-                iframe.src = 'https://www.youtube-nocookie.com/embed/awF0NGLoPfI?rel=0&autoplay=1';
-                iframe.title = 'Kaha-ni';
-                iframe.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
-                iframe.allowFullscreen = true;
-                frame.innerHTML = '';
-                frame.appendChild(iframe);
-            });
-        })();
 
         // Glimpses — infinite coverflow carousel, same as the other case
         // study pages: hovering and scrolling vertically also scrolls the

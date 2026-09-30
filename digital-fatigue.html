@@ -11,13 +11,17 @@
         /* Digital Fatigue via Instagram-only overrides. Kept local to this
            page so the other case study pages are unaffected. */
 
+        .cs-meta-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
         .cs-meta-c1,
         .cs-meta-c2,
         .cs-meta-c3,
         .cs-meta-c4,
         .cs-meta-c5,
         .cs-meta-featured {
-            background: linear-gradient(135deg, #833ab4, #e1306c, #f77737);
+            background: #e1306c;
         }
 
         .cs-meta-featured .cs-meta-label {
@@ -26,6 +30,8 @@
 
         .cs-hero-media {
             aspect-ratio: 3/4;
+            max-width: 55%;
+            margin-left: auto;
         }
 
         .cs-hero-media img {
@@ -215,7 +221,7 @@
         }
 
         .ig-insight-box {
-            background: linear-gradient(135deg, #833ab4, #e1306c 55%, #f77737);
+            background: #e1306c;
             border-radius: 16px;
             padding: 26px 24px;
             color: white;
@@ -391,6 +397,13 @@
             display: block;
         }
 
+        /* This particular source image is cropped tighter around the phone
+           than the others, so it renders visibly larger/more zoomed at the
+           same box size — pad it in to match the others' scale. */
+        .ig-concept-row .ig-phone-tight {
+            padding: 9% 6%;
+        }
+
         @media (max-width: 1100px) {
 
             .ig-research-grid,
@@ -465,7 +478,7 @@
             <div class="cs-hero-text">
                 <span class="cs-tag">UX Research</span>
                 <h1 class="headline-xl">DIGITAL FATIGUE VIA INSTAGRAM</h1>
-                <p class="cs-hero-tagline">Why young adults keep scrolling even when they know it's draining them —
+                <p class="cs-hero-tagline">Why young adults keep scrolling even when they know it's draining them
                     and a calmer way to stop.</p>
             </div>
             <div class="cs-hero-media">
@@ -479,21 +492,17 @@
                 <div class="cs-meta-label">Project Type</div>
                 <div class="cs-meta-value">UX Research</div>
             </div>
-            <div class="cs-meta-item cs-meta-c2">
-                <div class="cs-meta-label">Role</div>
-                <div class="cs-meta-value">TBD</div>
-            </div>
             <div class="cs-meta-item cs-meta-featured">
                 <div class="cs-meta-label">Duration</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">2 Weeks</div>
             </div>
             <div class="cs-meta-item cs-meta-c3">
                 <div class="cs-meta-label">Team</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">6 People</div>
             </div>
             <div class="cs-meta-item cs-meta-c4">
                 <div class="cs-meta-label">Tools</div>
-                <div class="cs-meta-value">TBD</div>
+                <div class="cs-meta-value">Google Forms, Instagram Survey, Figma</div>
             </div>
         </div>
 
@@ -502,11 +511,11 @@
             <div class="ig-patch">
                 <div class="ig-patch-inner">
                     <div class="cs-section-label">Research Overview</div>
-                    <p class="ig-body" style="margin-top: 10px;">
+                    <p class="ig-body" style="margin-top: 10px; max-width: none;">
                         This research explores why young adults keep compulsively scrolling Instagram Reels even
                         when they know it's harmful. Using interviews, surveys, and other methods, it uncovers a
                         "restlessness-relief-fatigue" loop fueled by low-value "brain rot" content, escapism, and
-                        social obligation — revealing the gap between wanting to stop and actually being able to.
+                        social obligation revealing the gap between wanting to stop and actually being able to.
                     </p>
                     <a href="https://docs.google.com/document/d/14AUOh7SEvwR4GvPnUtSjceWlkKJmSTCyLCLge34tqNo/edit?tab=t.h1n1v7ww41um"
                         target="_blank" rel="noopener" class="ig-btn">Read the Analytical Report ↗</a>
@@ -521,7 +530,7 @@
                     <div class="cs-section-label">Problem Statement</div>
                     <h2 class="cs-split-title" style="margin-top: 10px;">Aware it's draining them, unable to stop
                     </h2>
-                    <p class="ig-body">
+                    <p class="ig-body" style="max-width: none;">
                         Young adults aged 18–24 are aware that their doomscrolling habits are compulsive and
                         mentally draining, yet they struggle to stop because the high-dopamine, low-value content
                         on social media keeps them engaged. They need a constructive substitute that offers the
@@ -537,11 +546,11 @@
             <div class="ig-patch">
                 <div class="ig-patch-inner">
                     <div class="cs-section-label">Designing for Intentional Pauses</div>
-                    <p class="ig-body" style="margin-top: 10px;">
+                    <p class="ig-body" style="margin-top: 10px; max-width: none;">
                         Instagram introduces a "Calm Mode" that activates when restless, repetitive scrolling is
-                        detected — nudging users with "Need a breather? Switch to Calm Mode." This shifts them into
+                        detected nudging users with "Need a breather? Switch to Calm Mode." This shifts them into
                         a self-curated, distraction-free feed built only from content they've chosen in advance
-                        (like photography, design inspiration, or close friends). The feed isn't infinite — it
+                        (like photography, design inspiration, or close friends). The feed isn't infinite it
                         naturally closes after 15–20 posts, offering a pause that feels deliberate and restorative
                         instead of just another scroll hole.
                     </p>
@@ -716,7 +725,7 @@
                             <div class="ig-persona-avatar" style="background: #2980b9;">AS</div>
                             <div class="ig-persona-name">Aditya Singh</div>
                             <div class="ig-persona-meta">23 · Music Producer & Influencer · Pune</div>
-                            <div class="ig-persona-quote">"Every time I post, I check the numbers constantly — it's
+                            <div class="ig-persona-quote">"Every time I post, I check the numbers constantly it's
                                 hard not to feel drained by the pressure."</div>
                             <div class="ig-persona-block">
                                 <h4>Core Needs</h4>
@@ -837,7 +846,7 @@
                 <div class="ig-phone"><img loading="lazy" src="insta 2.png" alt="Breathing transition"></div>
                 <div class="ig-phone"><img loading="lazy" src="insta 3.png" alt="Breathe out"></div>
                 <div class="ig-phone"><img loading="lazy" src="insta 4.png" alt="Try Focus Feed prompt"></div>
-                <div class="ig-phone"><img loading="lazy" src="insta 5.png" alt="Focus feed view"></div>
+                <div class="ig-phone"><img loading="lazy" src="insta 5.png" alt="Try Focus Feed prompt"></div>
                 <div class="ig-phone"><img loading="lazy" src="insta 6.png" alt="Focus feed post detail"></div>
             </div>
         </section>
@@ -848,9 +857,9 @@
                 <div class="ig-patch-inner">
                     <div class="cs-section-label">Concept</div>
                     <h2 class="cs-split-title" style="margin-top: 10px;">Our Concept</h2>
-                    <p class="ig-body">
+                    <p class="ig-body" style="max-width: none;">
                         When restlessness kicks in, the app asks: "Feeling restless? Try Focus Mode." Saying yes
-                        drops you into a minimal, ad-free, distraction-free feed of only what you've pre-selected —
+                        drops you into a minimal, ad-free, distraction-free feed of only what you've pre-selected
                         photography, design, close friends. It's capped at 15–20 posts, so it ends on its own,
                         leaving you refreshed and in control instead of guilty and drained.
                     </p>
@@ -864,8 +873,8 @@
                 <div class="ig-patch-inner">
                     <div class="cs-section-label">Rationale</div>
                     <h2 class="cs-split-title" style="margin-top: 10px;">Why This Solution</h2>
-                    <p class="ig-body">
-                        It works because it strips away distractions and endless choice — a personalized, ad-free
+                    <p class="ig-body" style="max-width: none;">
+                        It works because it strips away distractions and endless choice a personalized, ad-free
                         feed with a built-in stopping point. That structure turns scrolling into an intentional
                         break rather than a guilt-inducing spiral, supporting mental clarity, lower anxiety, and
                         genuine control over social media use.
@@ -880,7 +889,7 @@
                 <div class="ig-patch-inner">
                     <div class="cs-section-label">Outcome</div>
                     <h2 class="cs-split-title" style="margin-top: 10px;">Expected Impact</h2>
-                    <p class="ig-body">
+                    <p class="ig-body" style="max-width: none;">
                         Sharper focus and less digital fatigue, thanks to a short, personalized feed that replaces
                         endless scrolling with intentional breaks. The result is healthier habits, better mental
                         clarity, and more mindful, guilt-free engagement.
