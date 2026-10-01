@@ -148,10 +148,29 @@
   });
   cards.push({
     x: world.poleX + poleWidth - 280,
-    top: GROUND_TOP - px(1550) - cardH,
+    top: GROUND_TOP - px(1500) - cardH,
     w: cardW, h: cardH,
     img: 'game prototype work mydeck.png'
   });
+
+  // While flying up the pole, weave left/right around each experience card
+  // — a smooth, continuous zigzag (not a snap) that alternates sides card
+  // by card, so the path always threads the open space beside each card
+  // instead of cutting through it.
+  var charFlyW = px(CHAR_H);
+  var dodgeMargin = px(30);
+  var dodgeTransition = px(30);
+  var poleCenterX = world.poleX + poleWidth / 2;
+  var cardBands = cards.map(function (card) {
+    var cardCenterX = card.x + card.w / 2;
+    var dodgeLeft = cardCenterX > poleCenterX; // card bulges right -> weave left, and vice versa
+    var dodgeOffset = (dodgeLeft ? (card.x - dodgeMargin - charFlyW) : (card.x + card.w + dodgeMargin))
+      - (world.poleX + poleWidth * 0.55);
+    var rangeHigh = GROUND_TOP - card.top; // climbY at the card's lower edge
+    var rangeLow = GROUND_TOP - (card.top + card.h) - charFlyW; // card's upper edge, minus character height
+    return { low: rangeLow, high: rangeHigh, offset: dodgeOffset };
+  });
+  function smoothstep01(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
 
   var portalW = px(280);
   var portalH = portalW / (578 / 225);
@@ -401,10 +420,34 @@
         state = moving ? 'walk' : 'idle';
       }
     } else {
-      charX = world.poleX + poleWidth * 0.55;
+      var baseFlyX = world.poleX + poleWidth * 0.55;
       var climbY = dCurrent - world.horizontalDistance;
       charTop = (GROUND_TOP - charH) - climbY;
-      charX += Math.sin(climbY / 140) * px(46);
+
+      // Each card pulls the flight path toward its own fixed dodge offset
+      // with a smooth (continuous-derivative) weight that rises and falls
+      // across its height — never a hard switch — so blending several
+      // cards' pulls together always reads as one continuous zigzag,
+      // never a snap or a teleport.
+      var offsetSum = 0, maxWeight = 0;
+      for (var bi = 0; bi < cardBands.length; bi++) {
+        var band = cardBands[bi];
+        var w;
+        if (climbY < band.low - dodgeTransition || climbY > band.high + dodgeTransition) {
+          w = 0;
+        } else if (climbY < band.low) {
+          w = smoothstep01((climbY - (band.low - dodgeTransition)) / dodgeTransition);
+        } else if (climbY > band.high) {
+          w = 1 - smoothstep01((climbY - band.high) / dodgeTransition);
+        } else {
+          w = 1;
+        }
+        offsetSum += w * band.offset;
+        if (w > maxWeight) maxWeight = w;
+      }
+      charX = baseFlyX + offsetSum;
+      // gentle flutter, fading out as the zigzag swing takes over
+      charX += Math.sin(climbY / 140) * px(46) * (1 - maxWeight);
       state = 'fly';
     }
 
