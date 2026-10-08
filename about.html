@@ -275,6 +275,39 @@
             font-weight: 800;
             top: 0;
         }
+
+        /* Mobile only: stack the about-hero image/content and the
+           experience timeline cards instead of squeezing them into
+           narrow side-by-side columns. Desktop layout is untouched. */
+        @media (max-width: 768px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                padding: 24px;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline-icon {
+                position: static;
+                transform: none;
+                margin-bottom: 12px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
