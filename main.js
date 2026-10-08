@@ -11,6 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Mobile hamburger menu — toggles the nav links + CTA buttons dropdown.
+    const navToggle = document.getElementById('navToggle');
+    const navWrapper = document.querySelector('.nav-wrapper');
+    if (navToggle && navWrapper) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navWrapper.classList.toggle('nav-open');
+            navToggle.textContent = isOpen ? '✕' : '☰';
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        // Close the panel after tapping a nav link, so it doesn't stay open
+        // once the new page loads.
+        navWrapper.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navWrapper.classList.remove('nav-open');
+                navToggle.textContent = '☰';
+            });
+        });
+    }
+
     // Slider Logic for Featured Works (Home Page)
     const sliderTrack = document.getElementById('sliderTrack');
     const prevBtn = document.getElementById('prevBtn');

@@ -232,11 +232,34 @@ header {
   justify-content: flex-end;
 }
 
+.nav-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .logo {
   font-size: 20px;
   font-weight: 800;
   text-decoration: none;
   color: var(--on-background);
+}
+
+/* Mobile hamburger toggle — hidden on desktop, shown only under the
+   768px breakpoint below. */
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--pure-black);
+  border-radius: var(--rounded);
+  background: white;
+  font-size: 18px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 nav ul {
@@ -503,9 +526,76 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  nav ul {
+  /* Mobile header: logo + hamburger in one row, nav links and the two
+     CTA buttons collapse into a dropdown panel opened by the toggle. */
+  .nav-wrapper {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  /* Don't let the logo grow to fill the row on mobile (flex:1 from the
+     desktop layout was stretching it the full row width and pushing the
+     toggle button off the edge of the screen) — just its natural size,
+     with the toggle pinned to the right. */
+  .nav-wrapper>.logo {
+    flex: 0 0 auto;
+  }
+
+  .nav-toggle {
+    margin-left: auto;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-mobile-panel {
     display: none;
-    /* simple mobile hide for now */
+    width: 100%;
+    order: 3;
+  }
+
+  .nav-wrapper.nav-open .nav-mobile-panel {
+    display: flex;
+  }
+
+  .nav-wrapper nav.nav-mobile-panel {
+    margin-top: 20px;
+  }
+
+  .nav-wrapper nav.nav-mobile-panel ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .nav-wrapper nav.nav-mobile-panel li {
+    border-top: 1px solid var(--surface-variant);
+  }
+
+  .nav-wrapper nav.nav-mobile-panel li:first-child {
+    border-top: none;
+  }
+
+  .nav-wrapper nav.nav-mobile-panel a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 16px;
+  }
+
+  .nav-wrapper div.nav-mobile-panel.nav-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 16px;
+    flex: none;
+  }
+
+  .nav-wrapper div.nav-mobile-panel.nav-buttons .btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
   }
 
   .slider-item {
